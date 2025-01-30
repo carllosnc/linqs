@@ -1,8 +1,8 @@
-[![One Stack](https://github.com/carllosnc/linck/actions/workflows/bun.yml/badge.svg)](https://github.com/carllosnc/linck/actions/workflows/bun.yml)
+[![Linqs](https://github.com/carllosnc/linqs/actions/workflows/bun.yml/badge.svg)](https://github.com/carllosnc/linqs/actions/workflows/bun.yml)
 
-# 🍎 One Stack
+# Linqs
 
->fast way to prototype full stack apps with Next.js, React, Tailwind, and Drizzle ORM
+>a simple way to organize and share links
 
 ## What's in the box?
 
