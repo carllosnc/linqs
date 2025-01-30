@@ -1,4 +1,4 @@
-import { Logo } from '@/components/logo'
+import { LogoVertical } from '@/components/logo'
 import { GoogleAuthButton } from '@/components/google-auth-button'
 
 export default function AuthPage() {
@@ -8,9 +8,9 @@ export default function AuthPage() {
 
       <div className="w-full min-h-screen max-w-[50%] lg:min-h-min lg:max-w-[100%] flex justify-center items-center">
         <div className="w-full max-w-[600px] px-[10px] flex flex-col items-center gap-[30px] justify-center py-[60px]">
-          <Logo className="relative top-[3px] w-[240px] h-auto fill-zinc-300 dark:fill-white" />
-          <h1 className="text-zinc-600 text-[20px] dark:text-white">
-            Welcoment to One Stack
+          <LogoVertical className="relative top-[3px] w-[120px] h-auto fill-black dark:fill-white" />
+          <h1 className="text-zinc-600 md:text-sm text-[20px] dark:text-white text-center">
+            The better place to organize and share links
           </h1>
           <GoogleAuthButton />
         </div>
