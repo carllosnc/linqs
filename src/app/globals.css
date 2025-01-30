@@ -70,3 +70,21 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .border-color {
+    @apply border-zinc-200 dark:border-zinc-800;
+  }
+
+  .text-color {
+    @apply text-zinc-700 dark:text-zinc-500;
+  }
+
+  .title-color {
+    @apply text-zinc-800 dark:text-zinc-300;
+  }
+
+  .hovable {
+    @apply hover:border-blue-500 transition-all;
+  }
+}
