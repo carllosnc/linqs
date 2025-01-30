@@ -1,5 +1,3 @@
-[![Linqs](https://github.com/carllosnc/linqs/actions/workflows/bun.yml/badge.svg)](https://github.com/carllosnc/linqs/actions/workflows/bun.yml)
-
 # Linqs
 
 >a simple way to organize and share links
