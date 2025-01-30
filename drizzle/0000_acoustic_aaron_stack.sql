@@ -1,3 +1,12 @@
+CREATE TABLE `pages` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`numberOfLinks` integer NOT NULL,
+	`slug` text,
+	`name` text NOT NULL,
+	`userId` text NOT NULL,
+	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
 CREATE TABLE `account` (
 	`userId` text NOT NULL,
 	`type` text NOT NULL,

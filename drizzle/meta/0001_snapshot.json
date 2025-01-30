@@ -1,18 +1,18 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "2812c24d-edf8-42fb-93ca-74a3e91f7489",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "7f2c3d40-bf88-46a1-90c3-2082cf01d6bd",
+  "prevId": "2812c24d-edf8-42fb-93ca-74a3e91f7489",
   "tables": {
     "pages": {
       "name": "pages",
       "columns": {
         "id": {
           "name": "id",
-          "type": "integer",
+          "type": "text",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": true
+          "autoincrement": false
         },
         "numberOfLinks": {
           "name": "numberOfLinks",
