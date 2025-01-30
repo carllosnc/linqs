@@ -6,7 +6,7 @@ dotenv.config({ path: './.env.local', override: true });
 export default defineConfig({
   out: './drizzle',
   schema: [
-    './src/db/user-schema.ts',
+    './src/db/*-schema.ts',
   ],
   dialect: 'turso',
   dbCredentials: {
