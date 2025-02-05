@@ -67,3 +67,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .title-color {
+    @apply text-neutral-700 dark:text-neutral-100
+  }
+
+  .text-color {
+    @apply text-neutral-500 dark:text-neutral-400
+  }
+
+  .link-color {
+    @apply text-blue-600 dark:text-blue-300 hover:underline
+  }
+
+  .border-color {
+    @apply border-neutral-200 dark:border-neutral-800
+  }
+}
