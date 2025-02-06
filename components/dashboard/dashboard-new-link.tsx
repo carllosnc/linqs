@@ -16,9 +16,9 @@ import { newLinkSchema } from "@/schemas/new-link-schema";
 import { createClient } from "@/utils/supabase/client";
 import { Tables, TablesInsert } from "@/types/database.types";
 import { useState } from "react";
-import { ChevronLeft, Link as LinkIcon } from "lucide-react";
-import Link from "next/link";
+import { EllipsisVertical, Globe, Link as LinkIcon } from "lucide-react";
 import { Switch } from "../ui/switch";
+import Link from "next/link";
 
 type Props = {
   pageId: string
@@ -38,6 +38,7 @@ export function DashboardNewLink({ pageId, page }: Props) {
 
     setLoading(true)
     const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
 
     const metadataRequest = await fetch(`https://api.dub.co/metatags?url=${data.url}`)
     const metadataData = await metadataRequest.json() as {
@@ -47,6 +48,7 @@ export function DashboardNewLink({ pageId, page }: Props) {
     }
 
     const linkData: TablesInsert<"links"> = {
+      user_id: user!.id!,
       page_id: pageId,
       url: data.url,
       title: metadataData.title,
@@ -99,11 +101,22 @@ export function DashboardNewLink({ pageId, page }: Props) {
         </DialogContent>
       </Dialog>
 
-      <div className="flex items-center gap-[10px]">
-        <span className="text-color"> This page is public? </span>
-        <Switch />
-      </div>
+      <div className="flex gap-[20px]">
+        <div className="flex items-center gap-[10px]">
+          <span className="text-color"> Public </span>
+          <Switch />
+        </div>
 
+        <Link target="_blank" href={`/links/${pageId}`}>
+          <Button size="icon" variant="outline">
+            <Globe />
+          </Button>
+        </Link>
+
+        <Button size="icon" variant="outline">
+          <EllipsisVertical />
+        </Button>
+      </div>
     </div>
   )
 }
