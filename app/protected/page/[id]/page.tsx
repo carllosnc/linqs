@@ -6,6 +6,7 @@ import { DashboardListLinks } from "@/components/dashboard/dashboard-list-links"
 import { Tables } from "@/types/database.types";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, EllipsisVertical } from "lucide-react";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 
 export default async function SinglePage({ params }: { params: { id: string } }) {
@@ -34,21 +35,34 @@ export default async function SinglePage({ params }: { params: { id: string } })
 
       <section className="bg-white dark:bg-neutral-900 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px]">
         <div className="px-4 py-4 border-b border-color justify-between items-center flex gap-[10px]">
-          <Button variant="outline" size="icon">
-            <Link href="/protected">
-              <ChevronLeft />
-            </Link>
-          </Button>
-
-          <div>
-            <h2 className="title-color font-bold text-[22px]">{singlePageData.title}</h2>
-            <p className="text-color">{singlePageData.descriptions}</p>
-          </div>
-
-          <div>
-            <Button size="icon" variant="outline">
-              <EllipsisVertical />
+          <div className="flex items-center gap-[20px]">
+            <Button variant="outline" size="icon">
+              <Link href="/protected">
+                <ChevronLeft />
+              </Link>
             </Button>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline">
+                  All pages
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-full max-w-[400px]">
+                <SheetHeader>
+                  <SheetTitle>Are you absolutely sure?</SheetTitle>
+                  <SheetDescription>
+                    This action cannot be undone. This will permanently delete your account
+                    and remove your data from our servers.
+                  </SheetDescription>
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
+
+            <div className="flex flex-col">
+              <h2 className="title-color font-bold">{singlePageData.title}</h2>
+              <p className="text-sm text-color">{singlePageData.descriptions}</p>
+            </div>
           </div>
         </div>
 
