@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, NotebookText } from "lucide-react";
+import { ChevronRight, File } from "lucide-react";
 import { Tables } from "@/types/database.types";
 import { Badge } from "@/components/ui/badge";
 
@@ -48,7 +48,7 @@ export function DashboardPageCard({ page, isLast }: Props) {
         }
       `}>
       <div className="flex gap-[15px] items-center">
-        <NotebookText className="text-neutral-400 dark:text-neutral-600 w-[25px] h-[25px]" />
+        <File className="text-neutral-400 dark:text-neutral-600 w-[25px] h-[25px]" />
 
         <div className="flex flex-col gap-[3px]">
           <div className="flex gap-[10px] items-center">
