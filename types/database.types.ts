@@ -18,6 +18,7 @@ export type Database = {
           page_id: string | null
           title: string | null
           url: string | null
+          user_id: string
         }
         Insert: {
           created_at?: string
@@ -27,6 +28,7 @@ export type Database = {
           page_id?: string | null
           title?: string | null
           url?: string | null
+          user_id: string
         }
         Update: {
           created_at?: string
@@ -36,6 +38,7 @@ export type Database = {
           page_id?: string | null
           title?: string | null
           url?: string | null
+          user_id?: string
         }
         Relationships: [
           {
@@ -52,6 +55,7 @@ export type Database = {
           created_at: string
           descriptions: string | null
           id: string
+          isPublic: boolean
           title: string | null
           user_id: string | null
         }
@@ -59,6 +63,7 @@ export type Database = {
           created_at?: string
           descriptions?: string | null
           id?: string
+          isPublic?: boolean
           title?: string | null
           user_id?: string | null
         }
@@ -66,6 +71,7 @@ export type Database = {
           created_at?: string
           descriptions?: string | null
           id?: string
+          isPublic?: boolean
           title?: string | null
           user_id?: string | null
         }
