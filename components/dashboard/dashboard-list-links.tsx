@@ -3,7 +3,7 @@
 import { useRealtimeLinks } from "@/hooks/use-realtime-links";
 import { Tables } from "@/types/database.types";
 import { Input } from "@/components/ui/input";
-import { ListFilter, RectangleHorizontal, Rows2, Rows4, Square, TriangleAlert } from "lucide-react"
+import { ListFilter, Rows2, Rows4, TriangleAlert } from "lucide-react"
 import { useState } from "react";
 import { DashboardLinkCard } from "@/components/dashboard/dashboard-link-card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
@@ -17,7 +17,7 @@ export function DashboardListLinks({ links }: Props) {
   const [filter, setFilter] = useState("");
 
   const filterLinks = (link: Tables<'links'>) => {
-    return link.title!.toLowerCase().includes(filter.toLowerCase());
+    return link.url!.toLowerCase().includes(filter.toLowerCase());
   };
 
   const filteredLinks = listOfLinks.filter(filterLinks);
@@ -31,17 +31,6 @@ export function DashboardListLinks({ links }: Props) {
           onChange={(e) => setFilter(e.target.value)}
           placeholder="Filter link by name"
         />
-
-        <div className="w-full flex justify-end">
-          <ToggleGroup type="single">
-            <ToggleGroupItem variant="outline" value="a">
-              <Rows2 />
-            </ToggleGroupItem>
-            <ToggleGroupItem variant="outline" value="b">
-              <Rows4 />
-            </ToggleGroupItem>
-          </ToggleGroup>
-        </div>
       </header>
 
       <div className="flex flex-col">
