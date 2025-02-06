@@ -11,11 +11,18 @@ export function useRealtimeLinks(links: Tables<'links'>[]) {
       .channel("links")
       .on(
         "postgres_changes",
-        { event: "*", schema: "public", table: "links" },
+        { event: "INSERT", schema: "public", table: "links" },
         (payload) => {
           setListOfLinks(c => [payload.new, ...c] as Tables<'links'>[]);
         },
-      ).subscribe();
+      ).on(
+        "postgres_changes",
+        { event: "DELETE", schema: "public", table: "links" },
+        (payload) => {
+          setListOfLinks(c => c.filter(link => link.id !== payload.old.id));
+        }
+      )
+      .subscribe();
 
     return () => {
       supabase.removeChannel(subscription);
