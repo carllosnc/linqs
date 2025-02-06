@@ -2,8 +2,10 @@
 
 import { Tables } from "@/types/database.types"
 import { Button } from "@/components/ui/button";
-import { EllipsisVertical } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { Spinner } from "@/components/ui/spinner";
+import { Trash } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { createClient } from "@/utils/supabase/client";
 
 type props = {
   link: Tables<'links'>
@@ -11,6 +13,7 @@ type props = {
 
 export function DashboardLinkCard({ link }: props) {
   const imageRef = useRef<HTMLImageElement>(null);
+  const [loading, setLoading] = useState(false);
 
   function getFavicon(url: string) {
     const host = new URL(url).hostname;
@@ -24,8 +27,6 @@ export function DashboardLinkCard({ link }: props) {
         ((imageRef.current!.naturalWidth || 0) / (imageRef.current!.naturalHeight || 1)).toFixed(1)
       );
 
-      console.log(ratio)
-
       if (ratio >= 1.5 && ratio <= 1.9) {
         console.log("here!")
 
@@ -34,16 +35,23 @@ export function DashboardLinkCard({ link }: props) {
     }
   }
 
+  async function deleteLink() {
+    setLoading(true);
+    const supabase = createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    await supabase.from("links").delete().eq("id", link.id).eq("user_id", user?.id)
+    setLoading(false);
+  }
+
   useEffect(() => {
     setTimeout(() => {
-      console.log('here!')
-
       checkRatio();
-    }, 1000)
+    }, 500)
   }, [imageRef]);
 
   return (
-    <article className="transition-all flex md:flex-col border-b border-color gap-[20px] p-[20px]">
+    <article className="transition-all flex items-center md:flex-col border-b border-color gap-[20px] py-[15px] px-[20px]">
       <a
         className="w-full"
         href={link.url!}
@@ -55,21 +63,17 @@ export function DashboardLinkCard({ link }: props) {
 
           <div className="flex items-center gap-[15px]">
             <img src={getFavicon(link.url!)} alt="favicon" className="w-[20px] h-[20px]" />
-            <span className="title-color font-semibold"> { link.title! } </span>
+            <span className="title-color"> { link.title! } </span>
           </div>
-
-          <span className="text-color"> { link.description! } </span>
-
-          <img
-            ref={imageRef}
-            src={link.image!}
-            alt="favicon"
-            className="p-[5px] border hidden border-color w-[full] max-w-[400px] h-auto" />
         </div>
       </a>
 
-      <Button variant="outline" size="icon">
-        <EllipsisVertical />
+      <Button disabled={loading} onClick={deleteLink} variant="outline" size="icon">
+        {
+          loading
+          ? <Spinner size="sm" color="danger" />
+          : <Trash className="text-red-500" size={15} />
+        }
       </Button>
     </article>
   )
