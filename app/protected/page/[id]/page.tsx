@@ -3,7 +3,7 @@ import { DashboardFooter } from "@/components/dashboard/dashboard-footer";
 import { DashboardPageToolbar } from "@/components/dashboard/dashboard-page-toolbar";
 import { createClient } from "@/utils/supabase/server";
 import { DashboardListLinks } from "@/components/dashboard/dashboard-list-links";
-import { Tables } from "@/types/database.types";
+import { Tables } from "@/database.types";
 import { redirect } from "next/navigation";
 
 export default async function SinglePage({ params }: { params: { id: string } }) {
