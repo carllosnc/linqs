@@ -17,7 +17,7 @@ import { newPageSchema } from "@/schemas/new-page-schema";
 import { createClient } from "@/utils/supabase/client";
 import { Tables, TablesInsert } from "@/types/database.types";
 import { useState } from "react";
-import { NotebookText } from "lucide-react";
+import { File } from "lucide-react";
 
 type Props = {
   pages: Tables<'pages'>[]
@@ -58,7 +58,7 @@ export function DashboardNewPage({ pages }: Props) {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button size="sm" variant="outline">
-            <NotebookText className="w-4 h-4 mr-2" />
+            <File className="w-4 h-4 mr-2" />
             New Page
           </Button>
         </DialogTrigger>
