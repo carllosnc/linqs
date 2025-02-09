@@ -15,9 +15,10 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { newPageSchema } from "@/schemas/new-page-schema";
 import { createClient } from "@/utils/supabase/client";
-import { Tables, TablesInsert } from "@/types/database.types";
+import { Tables, TablesInsert } from "@/database.types";
 import { useState } from "react";
 import { File } from "lucide-react";
+import Link from "next/link";
 
 type Props = {
   pages: Tables<'pages'>[]
@@ -55,58 +56,65 @@ export function DashboardNewPage({ pages }: Props) {
     <div className="flex bg-white dark:bg-neutral-900 items-center justify-between p-4 border-b border-color">
       <span className="text-color"> {numberOfPages} Pages </span>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
+      <div className="flex gap-[10px]">
+        <Link href="/">
           <Button size="sm" variant="outline">
-            <File className="w-4 h-4 mr-2" />
-            New Page
+            Public profile
           </Button>
-        </DialogTrigger>
+        </Link>
 
-        <DialogContent className="border gap-[30px] border-white dark:border-neutral-800">
-          <DialogHeader className="flex flex-col">
-            <DialogTitle>Create new page</DialogTitle>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button size="sm" variant="outline">
+              <File className="w-4 h-4 mr-2" />
+              New Page
+            </Button>
+          </DialogTrigger>
 
-            <DialogDescription>
-              A page is a collection of links.
-            </DialogDescription>
-          </DialogHeader>
+          <DialogContent className="border gap-[30px] border-white dark:border-neutral-800">
+            <DialogHeader className="flex flex-col">
+              <DialogTitle>Create new page</DialogTitle>
+              <DialogDescription>
+                A page is a collection of links.
+              </DialogDescription>
+            </DialogHeader>
 
-          <form className="flex flex-col gap-[20px]" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col gap-[12px]">
-              <Label className="inline-flex gap-[6px] items-center">
-                <span>Title</span>
-                {
-                  errors.title &&
-                  <span className="text-red-500 dark:text-red-400">
-                    {errors.title.message as string}
-                  </span>
-                }
-              </Label>
-              <Input placeholder="Enter page title" {...register('title')} />
-            </div>
+            <form className="flex flex-col gap-[20px]" onSubmit={handleSubmit(onSubmit)}>
+              <div className="flex flex-col gap-[12px]">
+                <Label className="inline-flex gap-[6px] items-center">
+                  <span>Title</span>
+                  {
+                    errors.title &&
+                    <span className="text-red-500 dark:text-red-400">
+                      {errors.title.message as string}
+                    </span>
+                  }
+                </Label>
+                <Input placeholder="Enter page title" {...register('title')} />
+              </div>
 
-            <div className="flex flex-col gap-[12px]">
-              <Label className="inline-flex gap-[6px] items-center">
-                <span>Description</span>
-                {
-                  errors.description &&
-                  <span className="text-red-500 dark:text-red-400">
-                    {errors.description.message as string}
-                  </span>
-                }
-              </Label>
-              <Input placeholder="Enter page description" {...register('description')} />
-            </div>
+              <div className="flex flex-col gap-[12px]">
+                <Label className="inline-flex gap-[6px] items-center">
+                  <span>Description</span>
+                  {
+                    errors.description &&
+                    <span className="text-red-500 dark:text-red-400">
+                      {errors.description.message as string}
+                    </span>
+                  }
+                </Label>
+                <Input placeholder="Enter page description" {...register('description')} />
+              </div>
 
-            <div>
-              <Button type="submit" size="sm" disabled={loading}>
-                {loading ? "Creating..." : "Create"}
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
+              <div>
+                <Button type="submit" size="sm" disabled={loading}>
+                  {loading ? "Creating..." : "Create"}
+                </Button>
+              </div>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </div>
     </div>
   )
 }
