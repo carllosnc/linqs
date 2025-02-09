@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { newLinkSchema } from "@/schemas/new-link-schema";
 import { createClient } from "@/utils/supabase/client";
-import { Tables, TablesInsert } from "@/types/database.types";
+import { Tables, TablesInsert } from "@/database.types";
 import { useState } from "react";
 import {
   ChevronLeft,
