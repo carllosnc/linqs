@@ -4,9 +4,6 @@ export type Message =
   | { message: string };
 
 export function FormMessage({ message }: { message: Message }) {
-
-  console.log(message);
-
   if (Object.keys(message).length === 0) return null;
 
   return (
