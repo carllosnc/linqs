@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ChevronRight, File } from "lucide-react";
-import { Tables } from "@/types/database.types";
+import { Tables } from "@/database.types";
 import { Badge } from "@/components/ui/badge";
 
 type Props = {
@@ -56,9 +56,14 @@ export function DashboardPageCard({ page, isLast }: Props) {
               wasCreatedToday(page.created_at)
               && <Badge className="bg-emerald-600 h-[22px] text-white">New</Badge>
             }
-            <h2 className="text-[17px] font-semibold title-color truncate"> { upperFirst(page.title!) } </h2>
+            <h2 className="text-[16px] font-semibold title-color truncate"> { upperFirst(page.title!) } </h2>
           </div>
-          <span className="text-color truncate"> { page.descriptions } </span>
+
+          {
+            page.descriptions &&
+            <span className="text-color truncate"> → { page.descriptions } </span>
+          }
+
           <small className="text-color"> { formatDate(page.created_at) } </small>
         </div>
       </div>
