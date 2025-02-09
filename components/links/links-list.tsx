@@ -20,7 +20,7 @@ export function LinksLinkList({ links, userId, email }: props) {
   if (links.length === 0) {
     return (
       <div className="px-4 w-full max-w-[550px] m-auto flex flex-col gap-[20px] justify-center items-center">
-        <LinksSheet email={email} userId={userId as string} />
+        <LinksSheet userId={userId as string} />
 
         <div className="bg-red text-center h-[150px] w-full bg-white dark:bg-neutral-900 border border-color rounded-lg shadow-2xl shadow-neutral-200 dark:shadow-none flex flex-col items-center justify-center gap-[10px] p-[20px]">
           <AlertCircle className="text-color" />
@@ -36,7 +36,7 @@ export function LinksLinkList({ links, userId, email }: props) {
     <div className="flex flex-col gap-[20px] justify-center items-center">
       <div className="flex md:px-4 gap-[10px] justify-between items-center w-full max-w-[550px]">
 
-        <LinksSheet email={email} userId={userId as string} />
+        <LinksSheet userId={userId as string} />
 
         <div className="flex items-center gap-[10px]">
           <span className="text-color"> Tiny card </span>
