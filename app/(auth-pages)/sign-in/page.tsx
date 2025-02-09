@@ -12,9 +12,9 @@ import {
   AuthContainer
 } from "@/components/auth";
 import Link from "next/link";
+import { GoogleButton } from "@/components/google-button";
 
 export default async function Login(props: { searchParams: Promise<Message> }) {
-
   const searchParams = await props.searchParams;
 
   return (
@@ -60,6 +60,11 @@ export default async function Login(props: { searchParams: Promise<Message> }) {
                 Forgot Password?
               </Link>
             </div>
+
+            <hr />
+
+            <GoogleButton />
+
             <FormMessage message={searchParams} />
           </AuthContent>
 
