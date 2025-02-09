@@ -25,7 +25,7 @@ export function UserButton() {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
+      <DropdownMenuLabel>{user?.email}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={async () => {
           await createClient().auth.signOut();
