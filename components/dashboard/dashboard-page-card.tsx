@@ -50,15 +50,15 @@ export function DashboardPageCard({ page, isLast }: Props) {
       <div className="flex gap-[15px] items-center">
         <File className="text-neutral-400 dark:text-neutral-600 w-[25px] h-[25px]" />
 
-        <div className="flex flex-col gap-[3px]">
+        <div className="flex flex-col gap-[3px] w-full max-w-[7 00px]">
           <div className="flex gap-[10px] items-center">
             {
               wasCreatedToday(page.created_at)
               && <Badge className="bg-emerald-600 h-[22px] text-white">New</Badge>
             }
-            <h2 className="text-[17px] font-semibold title-color"> { upperFirst(page.title!) } </h2>
+            <h2 className="text-[17px] font-semibold title-color truncate"> { upperFirst(page.title!) } </h2>
           </div>
-          <span className="text-color"> { page.descriptions } </span>
+          <span className="text-color truncate"> { page.descriptions } </span>
           <small className="text-color"> { formatDate(page.created_at) } </small>
         </div>
       </div>
