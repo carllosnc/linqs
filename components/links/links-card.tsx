@@ -1,6 +1,6 @@
 "use client"
 
-import { Tables } from "@/types/database.types"
+import { Tables } from "@/database.types"
 import { useEffect, useRef } from "react";
 
 type props = {
@@ -66,7 +66,9 @@ export function LinksLinkCard({ link, tiny }: props) {
         <span className="link-color">{getHost(link.url!)}</span>
       </div>
 
-      <span className="title-color"> { link.title! } </span>
+      {!tiny &&
+        <span className="title-color"> { link.title! } </span>
+      }
 
       {!tiny &&
         <img
