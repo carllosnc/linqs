@@ -1,7 +1,7 @@
 "use client"
 
 import { useRealtimePages } from "@/hooks/use-realtime-pages";
-import { Tables } from "@/types/database.types";
+import { Tables } from "@/database.types";
 import { DashboardPageCard } from "@/components/dashboard/dashboard-page-card";
 import { Input } from "@/components/ui/input";
 import { ListFilter, TriangleAlert } from "lucide-react"
