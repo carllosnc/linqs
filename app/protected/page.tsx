@@ -1,6 +1,6 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { Tables } from "@/types/database.types";
+import { Tables } from "@/database.types";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { DashboardNewPage } from "@/components/dashboard/dashboard-new-page";
 import { DashboardListPages } from "@/components/dashboard/dashboard-list-pages";
