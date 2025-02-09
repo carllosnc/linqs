@@ -1,6 +1,6 @@
 "use client"
 
-import { Tables } from "@/types/database.types"
+import { Tables } from "@/database.types"
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { Trash } from "lucide-react";
