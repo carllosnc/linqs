@@ -17,11 +17,10 @@ export default function NotFound() {
             <h2 className="title-color font-semibold">Not Found</h2>
             <p className="text-color">This page does not exist</p>
           </div>
-          <div>
-            <Button variant="outline" size="sm">
-              <Link href="/">Return Home</Link>
-            </Button>
-          </div>
+
+          <Link href="/" className="link-color">
+            Back to home →
+          </Link>
         </div>
       </div>
     </main>
