@@ -1,7 +1,7 @@
 "use client"
 
 import { useRealtimeLinks } from "@/hooks/use-realtime-links";
-import { Tables } from "@/types/database.types";
+import { Tables } from "@/database.types";
 import { Input } from "@/components/ui/input";
 import { ListFilter, Rows2, Rows4, TriangleAlert } from "lucide-react"
 import { useState } from "react";
