@@ -6,6 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Trash } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
+import { toast } from "sonner"
 
 type props = {
   link: Tables<'links'>
@@ -42,6 +43,10 @@ export function DashboardLinkCard({ link }: props) {
 
     await supabase.from("links").delete().eq("id", link.id).eq("user_id", user?.id)
     setLoading(false);
+
+    toast(
+      `Link: ${link.title} was deleted`,
+    )
   }
 
   useEffect(() => {
@@ -51,18 +56,20 @@ export function DashboardLinkCard({ link }: props) {
   }, [imageRef]);
 
   return (
-    <article className="transition-all flex items-center md:flex-col border-b border-color gap-[20px] py-[15px] px-[20px]">
+    <article className="transition-all md:flex-col md:items-start overflow-hidden flex items-center border-b border-color gap-[20px] py-[15px] px-[20px]">
       <a
         className="w-full"
         href={link.url!}
         target="_blank"
         rel="noreferrer"
       >
-        <div className="flex flex-col gap-[10px] w-full max-w-[600px]">
-          <span className="link-color text-[14px] truncate"> { link.url! } </span>
+        <div className="flex flex-col gap-[10px]">
+          <span className="link-color text-[14px] truncate max-w-[600px]"> { link.url! } </span>
 
-          <div className="flex items-center gap-[15px]">
-            <img src={getFavicon(link.url!)} alt="favicon" className="w-[20px] h-[20px]" />
+          <div className="flex items-center gap-[10px]">
+            <div className="p-[3px] dark:bg-neutral-700 rounded-[3px]">
+              <img src={getFavicon(link.url!)} alt="favicon" className="w-[20px] h-[20px] min-w-[20px] min-h-[20px]" />
+            </div>
             <span className="title-color"> { link.title! } </span>
           </div>
         </div>
@@ -72,7 +79,7 @@ export function DashboardLinkCard({ link }: props) {
         {
           loading
           ? <Spinner size="sm" color="danger" />
-          : <Trash className="text-red-500" size={15} />
+          : <Trash className="text-color" size={15} />
         }
       </Button>
     </article>
