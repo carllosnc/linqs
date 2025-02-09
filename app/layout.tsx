@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner"
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -26,8 +27,9 @@ export default function RootLayout({
     <html lang="en" className={geistSans.className} suppressHydrationWarning>
 
       <head>
-        <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
-        {/* rest of your scripts go under */}
+        <meta name="referrer" content="origin" />
+        <script src="https://accounts.google.com/gsi/client" async></script>
+        <meta name="theme-color" content="#000000" />
       </head>
 
       <body>
@@ -43,6 +45,8 @@ export default function RootLayout({
             </div>
           </main>
         </ThemeProvider>
+
+        <Toaster />
       </body>
     </html>
   );
