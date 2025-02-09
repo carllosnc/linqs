@@ -9,21 +9,18 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import { useGetPagesById } from "@/hooks/use-get-pages-by-id";
+import { useGetProfile } from "@/hooks/use-get-profile";
 import Link from "next/link";
 import { File, MenuIcon } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 type Props = {
   userId: string;
-  email: string;
 };
 
-export function LinksSheet({ userId, email }: Props) {
+export function LinksSheet({ userId }: Props) {
   const { pages } = useGetPagesById(userId)
-
-  function extractName(email: string) {
-    const name = email.split("@")[0]
-    return name
-  }
+  const { profile } = useGetProfile(userId)
 
   return (
     <Sheet>
@@ -34,7 +31,18 @@ export function LinksSheet({ userId, email }: Props) {
       </SheetTrigger>
       <SheetContent side="left" className="w-full max-w-[300px] no-scrollbar md:!max-w-[260px] overflow-y-auto">
         <SheetHeader className="text-left">
-          <SheetTitle className="mb-[15px]">{extractName(email)}</SheetTitle>
+
+          <Avatar>
+            <AvatarImage
+              className="w-12 h-12 rounded-full"
+              src={profile?.avatar_url!} />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+
+          <SheetTitle className="mb-[15px] text-sm">{profile?.full_name}'s pages </SheetTitle>
+
+          <br />
+
           <div className="flex flex-col gap-[14px]">
             {
               pages.map((page, index) => {
