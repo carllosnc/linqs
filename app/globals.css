@@ -85,3 +85,31 @@
     @apply border-neutral-200 dark:border-neutral-800
   }
 }
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+.width-100{ max-width: 100px;}
+.width-200{ max-width: 200px;}
+.width-300{ max-width: 300px;}
+.display-none{ display: none;}
+
+.fade-in {
+  animation: fade-in 0.5s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
