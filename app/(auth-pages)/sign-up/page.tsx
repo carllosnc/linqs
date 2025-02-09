@@ -11,6 +11,8 @@ import {
   AuthCard,
   AuthContainer
 } from "@/components/auth";
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
 export default async function Signup(props: {
   searchParams: Promise<Message>
