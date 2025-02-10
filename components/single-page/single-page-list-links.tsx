@@ -3,16 +3,15 @@
 import { useRealtimeLinks } from "@/hooks/use-realtime-links";
 import { Tables } from "@/database.types";
 import { Input } from "@/components/ui/input";
-import { ListFilter, Rows2, Rows4, TriangleAlert } from "lucide-react"
+import { ListFilter, TriangleAlert } from "lucide-react"
 import { useState } from "react";
-import { DashboardLinkCard } from "@/components/dashboard/dashboard-link-card";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { SinglePageLinkCard } from "@/components/single-page/single-page-link-card";
 
 type Props = {
   links: Tables<'links'>[]
 }
 
-export function DashboardListLinks({ links }: Props) {
+export function SiglePageListLinks({ links }: Props) {
   const listOfLinks = useRealtimeLinks(links);
   const [filter, setFilter] = useState("");
 
@@ -36,7 +35,7 @@ export function DashboardListLinks({ links }: Props) {
       <div className="flex flex-col">
         {filteredLinks.length > 0 ? (
           filteredLinks.map((link, index) => (
-            <DashboardLinkCard link={link} key={link.id} />
+            <SinglePageLinkCard link={link} key={link.id} />
           ))
         ) : (
           <div className="flex h-[200px] p-4 gap-[10px] flex-col items-center justify-center">

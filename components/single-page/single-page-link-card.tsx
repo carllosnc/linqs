@@ -12,7 +12,7 @@ type props = {
   link: Tables<'links'>
 }
 
-export function DashboardLinkCard({ link }: props) {
+export function SinglePageLinkCard({ link }: props) {
   const imageRef = useRef<HTMLImageElement>(null);
   const [loading, setLoading] = useState(false);
 

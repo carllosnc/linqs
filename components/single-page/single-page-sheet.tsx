@@ -10,7 +10,7 @@ import { useGetPages } from "@/hooks/use-get-pages";
 import Link from "next/link";
 import { File } from "lucide-react";
 
-export function DashboardSidebarPages(){
+export function SinglePageSheet(){
   const { pages } = useGetPages()
 
   return (

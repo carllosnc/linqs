@@ -1,8 +1,8 @@
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { DashboardFooter } from "@/components/dashboard/dashboard-footer";
-import { DashboardPageToolbar } from "@/components/dashboard/dashboard-page-toolbar";
+import { SinglePageToolbar } from "@/components/single-page/single-page-toolbar";
 import { createClient } from "@/utils/supabase/server";
-import { DashboardListLinks } from "@/components/dashboard/dashboard-list-links";
+import { SiglePageListLinks } from "@/components/single-page/single-page-list-links";
 import { Tables } from "@/database.types";
 import { redirect } from "next/navigation";
 
@@ -40,8 +40,8 @@ export default async function SinglePage({ params }: { params: { id: string } })
           <p className="text-sm text-color text-center max-w-[500px] truncate">{singlePageData.descriptions}</p>
         </div>
 
-        <DashboardPageToolbar page={singlePageData} pageId={id} />
-        <DashboardListLinks links={linksData} />
+        <SinglePageToolbar page={singlePageData} pageId={id} />
+        <SiglePageListLinks links={linksData} />
       </section>
 
       <DashboardFooter />
