@@ -6,7 +6,7 @@ import { SiglePageListLinks } from "@/components/single-page/single-page-list-li
 import { Tables } from "@/database.types";
 import { redirect } from "next/navigation";
 
-export default async function SinglePage({ params }: { params: { id: string } }) {
+export default async function SinglePage({params}: {params:Promise<{id: string}>}) {
   const supabase = await createClient();
   const { id } = await params
 

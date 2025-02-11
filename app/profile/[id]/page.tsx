@@ -6,7 +6,7 @@ import { File, Lock } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher"
 import { redirect } from 'next/navigation'
 
-export default async function ProfilePage({params}: {params: {id: string}}) {
+export default async function ProfilePage({params}: {params:Promise<{id: string}>}) {
    const supabase = await createClient();
    const { id } = await params
 

@@ -7,7 +7,7 @@ import { Lock } from "lucide-react"
 import { LinksSheet } from "@/components/links/links-sheet";
 import Link from "next/link";
 
-export default async function PublicPage({ params }: { params: { id: string } }) {
+export default async function PublicPage({params}: {params:Promise<{id: string}>}) {
   const supabase = await createClient();
   const { id } = await params
 
