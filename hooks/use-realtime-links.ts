@@ -1,4 +1,4 @@
-import { Tables } from "@/types/database.types";
+import { Tables } from "@/database.types";
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
 
