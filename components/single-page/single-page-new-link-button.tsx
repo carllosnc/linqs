@@ -68,7 +68,7 @@ export function SinglePageNewLinkButton({ pageId, page }: Props) {
 
       <DialogContent className="border gap-[30px] border-white dark:border-neutral-800">
         <DialogHeader className="text-left">
-          <DialogTitle>Create new link</DialogTitle>
+          <DialogTitle className="font-medium"> Create new link </DialogTitle>
         </DialogHeader>
         <form className="flex flex-col gap-[20px]" onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-[12px]">
