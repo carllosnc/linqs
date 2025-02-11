@@ -4,11 +4,10 @@ import { Tables } from "@/database.types";
 import { Badge } from "@/components/ui/badge";
 
 type Props = {
-  isLast: boolean,
   page: Tables<'pages'>
 }
 
-export function DashboardPageCard({ page, isLast }: Props) {
+export function DashboardPageCard({ page }: Props) {
   function formatDate(date: string) {
     const formatter = new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
@@ -34,19 +33,11 @@ export function DashboardPageCard({ page, isLast }: Props) {
     );
   }
 
-  function border() {
-    return isLast
-      ? "border-b-0 border-transparent"
-      : "border-b border-color";
-  }
-
   return (
     <Link
       href={`/protected/page/${page.id}`}
-      className={`
-        bg-white dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer w-full p-4 flex justify-between items-center gap-[20px] ${border()
-        }
-      `}>
+      className="bg-white dark:bg-neutral-900 border-b border-color hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer w-full p-4 flex justify-between items-center gap-[20px]">
+
       <div className="flex gap-[15px] items-center">
         <File className="text-neutral-400 dark:text-neutral-600 w-[25px] h-[25px]" />
 
