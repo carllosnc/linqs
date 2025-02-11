@@ -63,6 +63,10 @@ export default async function ProfilePage({params}: {params: {id: string}}) {
           })}
         </div>
 
+        <Link href="/" className="link-color">
+          Go to home →
+        </Link>
+
         <div className="px-[20px] pt-[20px] w-full">
           <LogoHorizontal className="fill-neutral-300 m-auto w-full max-w-[150px] h-auto dark:fill-neutral-800" />
         </div>
