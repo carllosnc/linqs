@@ -8,40 +8,55 @@ import {
   SheetTitle,
   SheetTrigger
 } from "@/components/ui/sheet";
-import { useGetPagesById } from "@/hooks/use-get-pages-by-id";
+import { useGetPagesByUserId } from "@/hooks/use-get-pages-by-user-id";
 import { useGetProfile } from "@/hooks/use-get-profile";
 import Link from "next/link";
 import { File, MenuIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Spinner } from "../ui/spinner";
 
 type Props = {
   userId: string;
 };
 
 export function LinksSheet({ userId }: Props) {
-  const { pages } = useGetPagesById(userId)
-  const { profile } = useGetProfile(userId)
+  const { pages, loadingPages } = useGetPagesByUserId(userId)
+  const { profile, loadingProfile } = useGetProfile(userId)
+
+  function firstName(name: string) {
+    let firstName = name.split(' ')[0]
+    firstName = firstName.substring(0, 6)
+
+    return firstName
+  }
+
+  if(profile == undefined) {
+    return <Spinner size="sm" />
+  }
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="text-color" variant="outline" size="icon">
-          <MenuIcon />
+        <Button className="text-color flex gap-[10px]" variant="outline" size="sm">
+          <MenuIcon size={15} />
+          <span>{firstName(profile.full_name!)}' Pages</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-full max-w-[300px] no-scrollbar md:!max-w-[260px] overflow-y-auto">
         <SheetHeader className="text-left">
 
-          <Avatar>
-            <AvatarImage
-              className="w-12 h-12 rounded-full"
-              src={profile?.avatar_url!} />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          <div className="flex flex-col justify-center items-center gap-[10px] pb-[20px] mb-[20px] border-b border-color">
+            <Avatar>
+              <AvatarImage
+                className="w-12 h-12 rounded-full"
+                src={profile?.avatar_url!} />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
 
-          <SheetTitle className="mb-[15px] text-sm">{profile?.full_name}'s pages </SheetTitle>
-
-          <br />
+            <SheetTitle className="text-sm text-center title-color">
+              {profile?.full_name}'s pages
+            </SheetTitle>
+          </div>
 
           <div className="flex flex-col gap-[14px]">
             {
