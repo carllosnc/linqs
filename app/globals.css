@@ -84,6 +84,10 @@
   .border-color {
     @apply border-neutral-200 dark:border-neutral-800
   }
+
+  .danger-color {
+    @apply text-red-500 dark:text-red-400
+  }
 }
 
 @layer utilities {
