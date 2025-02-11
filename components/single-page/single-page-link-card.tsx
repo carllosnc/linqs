@@ -29,8 +29,6 @@ export function SinglePageLinkCard({ link }: props) {
       );
 
       if (ratio >= 1.5 && ratio <= 1.9) {
-        console.log("here!")
-
         imageRef.current!.classList.remove("hidden");
       }
     }
@@ -56,7 +54,7 @@ export function SinglePageLinkCard({ link }: props) {
   }, [imageRef]);
 
   return (
-    <article className="transition-all md:flex-col md:items-start overflow-hidden flex items-center border-b border-color gap-[20px] py-[15px] px-[20px]">
+    <article className="transition-all md:flex-col md:items-start overflow-hidden flex items-center border-b border-color gap-[20px] py-[15px] px-4">
       <a
         className="w-full"
         href={link.url!}
