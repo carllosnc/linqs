@@ -59,14 +59,14 @@ export function DashboardNewPage({ pages, userId }: Props) {
 
       <div className="flex gap-[10px]">
         <Link href={`/profile/${userId}`} target="_blank">
-          <Button className="text-color" size="sm" variant="outline">
+          <Button variant="outline">
             Public profile
           </Button>
         </Link>
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="text-color" size="sm" variant="outline">
+            <Button>
               <File className="w-4 h-4 mr-2" />
               New Page
             </Button>
