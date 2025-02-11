@@ -3,6 +3,7 @@ import { HomeFooter } from "@/components/home/home-footer"
 import { Illustration } from "@/components/illustration";
 import { LogoSymbol } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default async function Home() {
   return (
@@ -22,7 +23,9 @@ export default async function Home() {
             Linqs is a sleek, intuitive platform designed to help you effortlessly organize, manage, and share your favorite links.
           </p>
 
-          <Button className="rounded-full"> Get Started </Button>
+          <Link href="/login">
+            <Button> Get Started </Button>
+          </Link>
         </div>
 
         <Illustration className="w-full h-auto fill-neutral-200 dark:fill-neutral-800" />
