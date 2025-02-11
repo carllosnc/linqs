@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <main className="w-full justify-center bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col items-center">
+    <main className="w-full justify-center bg-white py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col items-center">
 
       <LogoSymbol className="fill-black max-w-[70px] h-auto dark:fill-white" />
 
