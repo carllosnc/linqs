@@ -20,10 +20,10 @@ export function LinksLinkCard({ link, tiny }: props) {
   function checkRatio(){
     if (imageRef.current) {
       const imageWidth = imageRef.current!.naturalWidth
-      const imageHeight = imageRef.current!.naturalHeight
 
       if (imageWidth !== 0){
         imageRef.current!.classList.remove("hidden");
+        imageRef.current!.classList.add("fade-in");
 
         switch (true) {
           case imageWidth <= 60:
@@ -69,12 +69,12 @@ export function LinksLinkCard({ link, tiny }: props) {
       <span className="title-color"> { link.title! } </span>
 
       {!tiny &&
-        <img
-          ref={imageRef}
-          alt={link.title!}
-          src={link.image!}
-          className="w-full bg-white hidden border border-color"
-        />
+          <img
+            ref={imageRef}
+            alt={link.title!}
+            src={link.image!}
+            className="w-full bg-white hidden border border-color"
+          />
       }
 
       {!tiny &&
