@@ -20,8 +20,8 @@ type Props = {
 };
 
 export function LinksSheet({ userId }: Props) {
-  const { pages, loadingPages } = useGetPagesByUserId(userId)
-  const { profile, loadingProfile } = useGetProfile(userId)
+  const { pages } = useGetPagesByUserId(userId)
+  const { profile } = useGetProfile(userId)
 
   function firstName(name: string) {
     let firstName = name.split(' ')[0]
