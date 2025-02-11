@@ -21,9 +21,11 @@ export function SinglePageSheet(){
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-full max-w-[280px] no-scrollbar overflow-y-auto">
-        <SheetHeader className="text-left">
-          <SheetTitle>Your pages</SheetTitle>
-          <br />
+        <SheetHeader className="text-left flex flex-col gap-[10px]">
+          <SheetTitle className="text-md">Your pages</SheetTitle>
+
+          <hr />
+
           <div className="flex flex-col gap-[14px]">
             {
               pages.map((page, index) => {
