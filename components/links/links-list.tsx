@@ -34,8 +34,7 @@ export function LinksLinkList({ links, userId, email }: props) {
 
   return (
     <div className="flex flex-col gap-[20px] justify-center items-center">
-      <div className="flex md:px-4 gap-[10px] justify-between items-center w-full max-w-[550px]">
-
+      <div className="flex h-[40px] md:px-4 gap-[10px] justify-between items-center w-full max-w-[550px]">
         <LinksSheet userId={userId as string} />
 
         <div className="flex items-center gap-[10px]">
