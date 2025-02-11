@@ -1,6 +1,6 @@
 "use client"
 
-import { useGetUser } from "@/hooks/use-get-users"
+import { useGetUser } from "@/hooks/use-get-user"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,24 +9,30 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { User } from "lucide-react";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 export function UserButton() {
   const router = useRouter()
-  const { user } = useGetUser()
+  const { user, loading } = useGetUser()
 
-  console.log(user)
+  if (loading) {
+    return <></>
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage className="w-7 h-7 rounded-full" src={user?.user_metadata?.avatar_url} />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+
+      <Avatar>
+        <AvatarImage
+          className="w-8 h-8 rounded-full"
+          src={user?.user_metadata?.avatar_url}
+        />
+        <AvatarFallback>CN</AvatarFallback>
+      </Avatar>
+
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{user?.user_metadata?.full_name}</DropdownMenuLabel>
