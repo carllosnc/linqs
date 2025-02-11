@@ -10,7 +10,7 @@ export default async function Home() {
     <main>
       <HomeHeader />
 
-      <div className="w-full m-auto max-w-[900px] border-x border-color flex flex-col gap-[50px] pt-[30px]">
+      <div className="w-full m-auto max-w-[900px] border-x border-color flex flex-col gap-[50px] pt-[30px] lg:border-none">
         <div className="w-full px-6 flex flex-col gap-[20px] items-center justify-center">
 
           <LogoSymbol className="w-[80px] h-auto fill-black dark:fill-neutral-700" />
@@ -23,7 +23,7 @@ export default async function Home() {
             Linqs is a sleek, intuitive platform designed to help you effortlessly organize, manage, and share your favorite links.
           </p>
 
-          <Link href="/login">
+          <Link href="/sign-in">
             <Button> Get Started </Button>
           </Link>
         </div>
