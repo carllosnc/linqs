@@ -21,10 +21,11 @@ import { File } from "lucide-react";
 import Link from "next/link";
 
 type Props = {
+  userId: string
   pages: Tables<'pages'>[]
 }
 
-export function DashboardNewPage({ pages }: Props) {
+export function DashboardNewPage({ pages, userId }: Props) {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [numberOfPages, setNumberOfPages] = useState(pages.length);
@@ -57,15 +58,15 @@ export function DashboardNewPage({ pages }: Props) {
       <span className="text-color"> {numberOfPages} Pages </span>
 
       <div className="flex gap-[10px]">
-        <Link href="/">
-          <Button size="sm" variant="outline">
+        <Link href={`/profile/${userId}`} target="_blank">
+          <Button className="text-color" size="sm" variant="outline">
             Public profile
           </Button>
         </Link>
 
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button size="sm" variant="outline">
+            <Button className="text-color" size="sm" variant="outline">
               <File className="w-4 h-4 mr-2" />
               New Page
             </Button>
