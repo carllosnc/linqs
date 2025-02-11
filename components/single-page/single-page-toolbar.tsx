@@ -4,10 +4,12 @@ import { Button } from "@/components/ui/button";
 import { SinglePageSheet } from "@/components/single-page/single-page-sheet"
 import { Tables } from "@/database.types";
 import { ChevronLeft, Globe } from "lucide-react";
-import { Switch } from "@/components/ui/switch";
 import Link from "next/link";
 import { SinglePageNewLinkButton } from "./single-page-new-link-button";
 import { SinglePageDeleteButton } from './single-page-delete-button'
+import { SinglePageEditButton } from "./single-page-edit-button";
+import { SinglePageTogglePublic } from "./single-page-toggle-public"
+import { useState } from "react";
 
 type Props = {
   pageId: string
@@ -15,34 +17,52 @@ type Props = {
 }
 
 export function SinglePageToolbar({ pageId, page }: Props) {
-  return (
-    <div className="flex items-center justify-between p-4 border-b border-color">
-      <div className="flex items-center gap-[20px]">
-        <Button variant="outline" size="icon">
-          <Link href="/protected">
-            <ChevronLeft size={20} />
-          </Link>
-        </Button>
+    const [title, setTitle] = useState<string>(page.title as string)
+    const [descriptions, setDescriptions] = useState<string | null>(page.descriptions)
 
-        <SinglePageSheet />
+    return (
+    <div>
+      <div className="px-4 py-4 border-b border-color justify-between items-center flex flex-col">
+        <h2 className="title-color text-[18px] max-w-[500px] text-center font-semibold">
+          {title}
+        </h2>
 
-        <SinglePageNewLinkButton pageId={pageId} page={page} />
+        {descriptions &&
+          <p className="text-sm text-color text-center max-w-[500px] truncate">
+            {descriptions}
+          </p>
+        }
       </div>
 
-      <div className="flex gap-[20px]">
-        <div className="flex items-center gap-[10px]">
-          <span className="text-color"> Public </span>
-          <Switch />
+      <div className="flex items-center justify-between p-4 border-b border-color">
+        <div className="flex items-center gap-[20px]">
+          <Button variant="outline" size="icon">
+            <Link href="/protected">
+              <ChevronLeft size={20} />
+            </Link>
+          </Button>
+
+          <SinglePageSheet />
+          <SinglePageNewLinkButton pageId={pageId} page={page} />
         </div>
 
-        <Link target="_blank" href={`/links/${pageId}`}>
-          <Button size="icon" variant="outline">
-            <Globe size={20} />
-          </Button>
-        </Link>
+        <div className="flex gap-[20px]">
 
-        <SinglePageDeleteButton pageId={pageId} page={page} />
+          <SinglePageTogglePublic pageId={pageId} page={page} />
 
+          <Link target="_blank" href={`/links/${pageId}`}>
+            <Button size="icon" variant="outline">
+              <Globe className="w-4 h-4 text-color" />
+            </Button>
+          </Link>
+
+          <SinglePageEditButton page={page} onChage={(title, descriptions) => {
+            setTitle(title as string)
+            setDescriptions(descriptions as string | null)
+          }} />
+
+          <SinglePageDeleteButton pageId={pageId} page={page} />
+        </div>
       </div>
     </div>
   )
