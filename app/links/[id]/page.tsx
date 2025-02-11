@@ -33,6 +33,14 @@ export default async function PublicPage({ params }: { params: { id: string } })
 
   const linksData = linksRequest.data as Tables<'links'>[]
 
+  const profileRequest = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  const profileData = profileRequest.data as Tables<'profiles'>
+
   if (!singlePageData.isPublic) {
     return (
       <main className="w-full bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center justify-center">
@@ -64,7 +72,7 @@ export default async function PublicPage({ params }: { params: { id: string } })
           <LogoSymbol className="fill-black max-w-[50px] h-auto dark:fill-white" />
         </Link>
 
-        <div className="text-center flex flex-col gap-[2px]">
+        <div className="text-center flex flex-col gap-[5px]">
           <h1 className="text-[20px] title-color font-bold">
             {singlePageData.title}
           </h1>
@@ -80,6 +88,10 @@ export default async function PublicPage({ params }: { params: { id: string } })
       <div className="w-full">
         <LinksLinkList email="carllosnc@gmail.com" userId={userId as string} links={linksData} />
       </div>
+
+      <Link href={`/profile/${profileData.id}`} className="link-color">
+        by {profileData.full_name}
+      </Link>
 
       <div className="px-[20px] w-full">
         <LogoHorizontal className="fill-neutral-300 m-auto w-full max-w-[200px] h-auto dark:fill-neutral-800" />
