@@ -35,11 +35,6 @@ export default async function SinglePage({ params }: { params: { id: string } })
       <DashboardHeader />
 
       <section className="bg-white dark:bg-neutral-900 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px]">
-        <div className="px-4 py-4 border-b border-color justify-between items-center flex flex-col gap-[5px]">
-          <h2 className="title-color text-[18px] max-w-[500px] text-center font-semibold">{singlePageData.title}</h2>
-          <p className="text-sm text-color text-center max-w-[500px] truncate">{singlePageData.descriptions}</p>
-        </div>
-
         <SinglePageToolbar page={singlePageData} pageId={id} />
         <SiglePageListLinks links={linksData} />
       </section>
