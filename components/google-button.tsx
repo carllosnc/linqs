@@ -17,8 +17,13 @@ export function GoogleButton() {
   }
 
   return (
-    <Button className="flex gap-[10px]" variant="outline" type="button" onClick={loginWithGoogle}>
-      <FcGoogle className="w-5 h-5" />
+    <Button
+      size="default"
+      className="flex gap-[10px]"
+      variant="outline"
+      type="button"
+      onClick={loginWithGoogle}>
+      <FcGoogle className="w-7 h-7" />
       Sign in with Google
     </Button>
   )
