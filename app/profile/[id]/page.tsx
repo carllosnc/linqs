@@ -4,6 +4,7 @@ import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { File, Lock } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher"
+import { redirect } from 'next/navigation'
 
 export default async function ProfilePage({params}: {params: {id: string}}) {
    const supabase = await createClient();
@@ -14,6 +15,11 @@ export default async function ProfilePage({params}: {params: {id: string}}) {
     .select("*")
     .eq("id", id)
     .single();
+
+  if (profileRequest.data === null) {
+    return redirect('/not-found')
+  }
+
   const profileData = profileRequest.data as Tables<'profiles'>
 
   const pagesRequest = await supabase
@@ -21,6 +27,7 @@ export default async function ProfilePage({params}: {params: {id: string}}) {
     .select("*")
     .eq("user_id", id)
     .order("created_at", { ascending: false });
+
   const pagesData = pagesRequest.data as Tables<'pages'>[]
 
   return (
