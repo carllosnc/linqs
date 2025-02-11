@@ -3,6 +3,8 @@ import { createClient } from "@/utils/supabase/server";
 import { LogoSymbol, LogoHorizontal } from "@/components/logo"
 import { LinksLinkList } from "@/components/links/links-list";
 import { redirect } from 'next/navigation'
+import { Lock } from "lucide-react"
+import { LinksSheet } from "@/components/links/links-sheet";
 
 export default async function PublicPage({ params }: { params: { id: string } }) {
   const supabase = await createClient();
@@ -29,6 +31,26 @@ export default async function PublicPage({ params }: { params: { id: string } })
     .order("created_at", { ascending: false });
 
   const linksData = linksRequest.data as Tables<'links'>[]
+
+  if (!singlePageData.isPublic) {
+    return (
+      <main className="w-full bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center justify-center">
+        <Lock size={50} className="text-neutral-300 dark:text-neutral-800" />
+
+        <h1 className="text-color text-center text-[22px]">
+          This page is private
+        </h1>
+
+        <LinksSheet userId={userId as string} />
+
+        <div className="px-[20px]">
+          <LogoHorizontal
+            className="fill-neutral-300 m-auto w-full max-w-[230px] h-auto dark:fill-neutral-800"
+          />
+        </div>
+      </main>
+    )
+  }
 
   return (
     <main className="w-full bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center">
