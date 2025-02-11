@@ -35,7 +35,6 @@ export function DashboardListPages({ pages }: Props) {
         {filteredPages.length > 0 ? (
           filteredPages.map((page, index) => (
             <DashboardPageCard
-              isLast={index === filteredPages.length - 1}
               page={page}
               key={page.id}
             />
