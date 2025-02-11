@@ -28,7 +28,7 @@ export default async function ProtectedPage() {
       <DashboardHeader />
 
       <section className="bg-white dark:bg-neutral-900 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px]">
-        <DashboardNewPage pages={pages} />
+        <DashboardNewPage pages={pages} userId={user?.id} />
         <DashboardListPages pages={pages} />
       </section>
 
