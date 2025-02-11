@@ -117,3 +117,29 @@
     opacity: 1;
   }
 }
+
+.privacy {
+  h1 {
+    @apply text-2xl font-bold;
+  }
+
+  h2 {
+    @apply text-xl font-bold pb-[10px] border-b border-color w-full;
+  }
+
+  h3 {
+    @apply text-lg font-bold;
+  }
+
+  h1, h2, h3 {
+    @apply title-color;
+  }
+
+  p, li{
+    @apply text-color;
+  }
+
+  strong {
+    @apply title-color;
+  }
+}
