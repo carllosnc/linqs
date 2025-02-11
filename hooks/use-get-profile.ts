@@ -15,7 +15,8 @@ export function useGetProfile(userId: string) {
       .eq('id', userId)
       .single();
 
-    setProfile(profile.data!)
+      setProfile(await profile.data!)
+      setLoading(false);
   }
 
   useEffect(() => {
