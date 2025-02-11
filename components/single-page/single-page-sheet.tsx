@@ -16,7 +16,7 @@ export function SinglePageSheet(){
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline">
+        <Button className="text-color" variant="outline">
           Pages
         </Button>
       </SheetTrigger>
