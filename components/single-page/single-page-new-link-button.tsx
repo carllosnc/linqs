@@ -60,7 +60,7 @@ export function SinglePageNewLinkButton({ pageId, page }: Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-blue-600 text-white hover:text-white hover:bg-blue-700" size="sm">
+        <Button size="sm">
           <LinkIcon className="w-4 h-4 mr-2" />
           New link
         </Button>
