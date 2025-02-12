@@ -1,30 +1,27 @@
 import { Tables } from "@/database.types";
 import { createClient } from "@/utils/supabase/client";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 export function useGetPages() {
-  const [pages, setPages] = useState<Tables<'pages'>[]>([])
-  const [loading, setLoading] = useState<boolean>(false)
+  const supabase = createClient();
 
-  async function getPages(){
-    setLoading(true)
+  return useQuery({
+    queryKey: ["getPages"],
+    queryFn: async () =>{
+      const { data: { user } } = await supabase.auth.getUser();
 
-    const supabase = createClient()
-    const { data: { user } } = await supabase.auth.getUser();
+      const request = await supabase
+        .from('pages')
+        .select('*')
+        .eq('user_id', user?.id)
+        .order('created_at', { ascending: false })
 
-    const pages = await supabase
-      .from('pages')
-      .select('*')
-      .eq('user_id', user?.id)
-      .order('created_at', { ascending: false })
+      const pages = request.data as Tables<'pages'>[]
 
-    setPages(pages.data!)
-    setLoading(false)
-  }
-
-  useEffect(() => {
-    getPages()
-  }, [])
-
-  return {pages, loading}
+      return {
+        pages,
+        user
+      };
+    }
+  })
 }
