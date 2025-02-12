@@ -13,9 +13,11 @@ export function HomeHeader() {
         </div>
 
         <div className="flex gap-2">
-          <Button size={"sm"} variant="outline">
-            <Link href="/sign-in">Login</Link>
-          </Button>
+          <Link href="/sign-in" prefetch={false}>
+            <Button size={"sm"} variant="outline">
+              Login
+            </Button>
+          </Link>
         </div>
       </div>
     </header>
