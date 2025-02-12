@@ -11,7 +11,11 @@ import Link from "next/link";
 import { File } from "lucide-react";
 
 export function SinglePageSheet(){
-  const { pages } = useGetPages()
+  const { data, isLoading } = useGetPages()
+
+  if (isLoading) {
+    return null
+  }
 
   return (
     <Sheet>
@@ -28,9 +32,9 @@ export function SinglePageSheet(){
 
           <div className="flex flex-col gap-[14px]">
             {
-              pages.map((page, index) => {
+              data?.pages.map((page, index) => {
                 return (
-                  <Link className="text-sm title-color items-center hover:underline flex gap-[10px] truncate" href={`/protected/page/${page.id}`} key={index}>
+                  <Link prefetch={false} className="text-sm title-color items-center hover:underline flex gap-[10px] truncate" href={`/protected/page/${page.id}`} key={index}>
                     <File className="w-[16px] h-[16px] text-color min-h-[16px] min-w-[16px]" />
                     <p className="truncate">{page.title}</p>
                   </Link>
