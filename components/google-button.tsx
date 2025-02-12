@@ -23,7 +23,7 @@ export function GoogleButton() {
 
     supabase.auth.signInWithOAuth({
       options: {
-        redirectTo: `${getURL()}auth/callback`,
+        redirectTo: `https://linqs.vercel.app/auth/callback`,
       },
       provider: 'google',
     })
