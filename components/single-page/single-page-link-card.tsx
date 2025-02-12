@@ -7,6 +7,7 @@ import { Trash } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { toast } from "sonner"
+import Link from "next/link";
 
 type props = {
   link: Tables<'links'>
@@ -55,7 +56,8 @@ export function SinglePageLinkCard({ link }: props) {
 
   return (
     <article className="transition-all md:flex-col md:items-start overflow-hidden flex items-center border-b border-color gap-[20px] py-[15px] px-4">
-      <a
+      <Link
+        prefetch={false}
         className="w-full"
         href={link.url!}
         target="_blank"
@@ -71,7 +73,7 @@ export function SinglePageLinkCard({ link }: props) {
             <span className="title-color"> { link.title! } </span>
           </div>
         </div>
-      </a>
+      </Link>
 
       <Button disabled={loading} onClick={deleteLink} variant="outline" size="icon">
         {
