@@ -45,9 +45,11 @@ export function DashboardPageCard({ page }: Props) {
           <div className="flex gap-[10px] items-center">
             {
               wasCreatedToday(page.created_at)
-              && <Badge className="bg-emerald-600 h-[22px] text-white">New</Badge>
+              && <Badge className="bg-emerald-600 rounded-sm h-[22px] text-white">New</Badge>
             }
-            <h2 className="text-[16px] font-semibold title-color truncate"> { upperFirst(page.title!) } </h2>
+            <h2 className="text-[16px] font-semibold title-color truncate">
+              { upperFirst(page.title!) }
+            </h2>
           </div>
 
           {
@@ -58,6 +60,7 @@ export function DashboardPageCard({ page }: Props) {
           <small className="text-color"> { formatDate(page.created_at) } </small>
         </div>
       </div>
+
       <ChevronRight className="w-[20px] h-[20px] opacity-35" />
     </Link>
   )
