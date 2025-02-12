@@ -36,11 +36,11 @@ export function SinglePageToolbar({ pageId, page }: Props) {
 
       <div className="flex items-center justify-between p-4 border-b border-color">
         <div className="flex items-center gap-[20px]">
-          <Button variant="outline" size="icon">
-            <Link href="/protected">
-              <ChevronLeft size={20} />
-            </Link>
-          </Button>
+          <Link prefetch={false} href="/protected">
+            <Button variant="outline" size="icon">
+                <ChevronLeft size={20} />
+            </Button>
+          </Link>
 
           <SinglePageSheet />
           <SinglePageNewLinkButton pageId={pageId} page={page} />
@@ -50,7 +50,7 @@ export function SinglePageToolbar({ pageId, page }: Props) {
 
           <SinglePageTogglePublic pageId={pageId} page={page} />
 
-          <Link target="_blank" href={`/links/${pageId}`}>
+          <Link prefetch={false} target="_blank" href={`/links/${pageId}`}>
             <Button size="icon" variant="outline">
               <Globe className="w-4 h-4 text-color" />
             </Button>
