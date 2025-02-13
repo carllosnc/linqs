@@ -1,10 +1,9 @@
+"use client"
+
 import SinglePageContent from "@/components/single-page/single-page-content";
+import { useParams } from "next/navigation";
+export default function SinglePage() {
+  const params = useParams<{ id: string }>()
 
-export default async function SinglePage(
-  { params }: { params:Promise<{id: string}> }
-) {
-  const { id } = await params
-
-  return <SinglePageContent id={id} />
+  return <SinglePageContent id={params.id} />
 }
-
