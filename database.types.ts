@@ -53,25 +53,25 @@ export type Database = {
       pages: {
         Row: {
           created_at: string
-          descriptions: string | null
+          description: string | null
           id: string
-          isPublic: boolean
+          is_public: boolean
           title: string | null
           user_id: string | null
         }
         Insert: {
           created_at?: string
-          descriptions?: string | null
+          description?: string | null
           id?: string
-          isPublic?: boolean
+          is_public?: boolean
           title?: string | null
           user_id?: string | null
         }
         Update: {
           created_at?: string
-          descriptions?: string | null
+          description?: string | null
           id?: string
-          isPublic?: boolean
+          is_public?: boolean
           title?: string | null
           user_id?: string | null
         }
