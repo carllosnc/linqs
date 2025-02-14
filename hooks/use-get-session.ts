@@ -5,7 +5,7 @@ export function useGetSession() {
   const supabase = createClient();
 
   return useQuery({
-    queryKey: ["getSession"],
+    queryKey: ["useGetSession"],
     queryFn: async () => {
       const { data } = await supabase.auth.getSession();
       return data;
