@@ -14,11 +14,11 @@ import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { newPageSchema } from "@/schemas/new-page-schema";
-import { createClient } from "@/utils/supabase/client";
-import { Tables, TablesInsert } from "@/database.types";
+import { Tables } from "@/database.types";
 import { useState } from "react";
 import { File } from "lucide-react";
 import Link from "next/link";
+import { usePageCrud } from "@/hooks/use-page-crud";
 
 type Props = {
   userId: string
@@ -26,39 +26,27 @@ type Props = {
 }
 
 export function DashboardNewPage({ pages, userId }: Props) {
-  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [numberOfPages, setNumberOfPages] = useState(pages.length);
+  const { mutate, isPending } = usePageCrud().createPage;
+  const globalPages = usePageCrud().globalPages;
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(newPageSchema),
   });
 
-  const onSubmit = async (data: any) => {
-    setLoading(true)
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+  const onSubmit = (data: any) => {
+    mutate(data)
 
-    const pageData: TablesInsert<"pages"> = {
-      user_id: user?.id,
-      descriptions: data.description,
-      title: data.title,
-    };
-
-    await supabase.from("pages").insert(pageData)
-    setNumberOfPages(c => c + 1)
-
-    setLoading(false)
     setOpen(false)
     reset()
   };
 
   return (
     <div className="flex bg-white dark:bg-neutral-900 items-center justify-between p-4 border-b border-color">
-      <span className="text-color"> {numberOfPages} Pages </span>
+      <span className="text-color"> {globalPages.length} Pages </span>
 
       <div className="flex gap-[10px]">
-        <Link href={`/profile/${userId}`} target="_blank">
+        <Link prefetch={false} href={`/profile/${userId}`} target="_blank">
           <Button variant="outline">
             Public profile
           </Button>
@@ -108,8 +96,8 @@ export function DashboardNewPage({ pages, userId }: Props) {
               </div>
 
               <div>
-                <Button type="submit" size="sm" disabled={loading}>
-                  {loading ? "Creating..." : "Create"}
+                <Button type="submit" size="sm" disabled={isPending}>
+                  {isPending ? "Creating..." : "Create"}
                 </Button>
               </div>
             </form>

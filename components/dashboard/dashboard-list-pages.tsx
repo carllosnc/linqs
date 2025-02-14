@@ -1,6 +1,5 @@
 "use client"
 
-import { useRealtimePages } from "@/hooks/use-realtime-pages";
 import { Tables } from "@/database.types";
 import { DashboardPageCard } from "@/components/dashboard/dashboard-page-card";
 import { Input } from "@/components/ui/input";
@@ -12,14 +11,13 @@ type Props = {
 }
 
 export function DashboardListPages({ pages }: Props) {
-  const listOfPages = useRealtimePages(pages);
   const [filter, setFilter] = useState("");
 
   const filterPages = (page: Tables<'pages'>) => {
     return page.title!.toLowerCase().includes(filter.toLowerCase());
   };
 
-  const filteredPages = listOfPages.filter(filterPages);
+  const filteredPages = pages.filter(filterPages);
 
   return (
     <section>
