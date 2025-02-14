@@ -2,13 +2,12 @@ import { Tables } from "@/database.types";
 import { createClient } from "@/utils/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 
-export function useGetSinglePage(id: string) {
+export function useGetLinks(id: string) {
   const supabase = createClient();
 
     return useQuery({
-      gcTime: 0,
-      queryKey: ["getSinglePages", id],
-      queryFn: async () =>{
+      queryKey: ["getLinks", id],
+      queryFn: async () => {
         const singlePageRequest = await supabase
           .from("pages")
           .select("*")
@@ -16,6 +15,8 @@ export function useGetSinglePage(id: string) {
           .single();
 
         const singlePageData = singlePageRequest.data as Tables<'pages'>
+
+        const userId = singlePageData.user_id
 
         const linksRequest = await supabase
           .from("links")
@@ -25,10 +26,19 @@ export function useGetSinglePage(id: string) {
 
         const linksData = linksRequest.data as Tables<'links'>[]
 
+        const profileRequest = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", userId)
+          .single();
+
+        const profileData = profileRequest.data as Tables<'profiles'>
+
         return {
           page: singlePageData,
-          links: linksData
+          links: linksData,
+          profile: profileData
         };
-    }
+      }
   })
 }

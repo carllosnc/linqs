@@ -13,12 +13,18 @@ export function useRealtimePages(pages: Tables<'pages'>[]) {
         "postgres_changes",
         { event: "*", schema: "public", table: "pages" },
         (payload) => {
-          setListOfPages(c => [payload.new, ...c] as Tables<'pages'>[]);
+          if(payload.eventType === "INSERT"){
+            setListOfPages(c => [payload.new, ...c] as Tables<'pages'>[]);
+          }
+
+          if(payload.eventType === "DELETE"){
+            setListOfPages(c => c.filter(page => page.id !== payload.old.id));
+          }
         },
       ).subscribe();
 
     return () => {
-      supabase.removeChannel(subscription);
+      //supabase.removeChannel(subscription);
     };
   }, [supabase]);
 
