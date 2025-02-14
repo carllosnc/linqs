@@ -17,6 +17,8 @@ export default function ProtectedPage() {
     )
   }
 
+  console.log(globalPages)
+
   return (
     <main className="w-full bg-neutral-50 dark:bg-neutral-950 min-h-screen flex flex-col justify-between">
       <DashboardHeader />
