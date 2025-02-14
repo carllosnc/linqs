@@ -1,3 +1,5 @@
+"use client"
+
 import { HomeHeader } from "@/components/home/home-header";
 import { HomeFooter } from "@/components/home/home-footer"
 import { Illustration } from "@/components/illustration";
@@ -5,7 +7,7 @@ import { LogoSymbol } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default async function Home() {
+export default function Home() {
   return (
     <main>
       <HomeHeader />
