@@ -5,7 +5,7 @@ export function useGetPagesByUserId(userId: string) {
   const supabase = createClient();
 
   return useQuery({
-    queryKey: ["getSession"],
+    queryKey: ["useGetPagesByUserId"],
     queryFn: async () => {
       const profile = await supabase
         .from('profiles')
