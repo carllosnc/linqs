@@ -9,19 +9,18 @@ import {
   SheetTrigger
 } from "@/components/ui/sheet";
 import { useGetPagesByUserId } from "@/hooks/use-get-pages-by-user-id";
-import { useGetProfile } from "@/hooks/use-get-profile";
 import Link from "next/link";
 import { File, MenuIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Spinner } from "../ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
+import { upperFirst } from "@/lib/utils"
 
 type Props = {
   userId: string;
 };
 
 export function LinksSheet({ userId }: Props) {
-  const { pages } = useGetPagesByUserId(userId)
-  const { profile } = useGetProfile(userId)
+  const { isLoading, data } = useGetPagesByUserId(userId)
 
   function firstName(name: string) {
     let firstName = name.split(' ')[0]
@@ -30,16 +29,16 @@ export function LinksSheet({ userId }: Props) {
     return firstName
   }
 
-  if(profile == undefined) {
+  if(isLoading) {
     return <Spinner size="sm" />
   }
 
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="text-color flex gap-[10px]" variant="outline" size="sm">
+        <Button className="text-color flex gap-[10px]" variant="outline">
           <MenuIcon size={15} />
-          <span>{firstName(profile.full_name!)}' Pages</span>
+          <span>{firstName(data?.profile.full_name!)}' Pages</span>
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-full max-w-[300px] no-scrollbar md:!max-w-[260px] overflow-y-auto">
@@ -49,22 +48,26 @@ export function LinksSheet({ userId }: Props) {
             <Avatar>
               <AvatarImage
                 className="w-12 h-12 rounded-full"
-                src={profile?.avatar_url!} />
+                src={data?.profile?.avatar_url!} />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
             <SheetTitle className="text-sm text-center title-color">
-              {profile?.full_name}'s pages
+              {data?.profile?.full_name}'s pages
             </SheetTitle>
           </div>
 
           <div className="flex flex-col gap-[14px]">
             {
-              pages.map((page, index) => {
+              data?.pages!.map((page, index) => {
                 return (
-                  <Link className="text-sm title-color items-center hover:underline flex gap-[10px] truncate" href={`/links/${page.id}`} key={index}>
+                  <Link
+                  prefetch={false}
+                  className="text-sm title-color items-center hover:underline flex gap-[10px] truncate" href={`/links/${page.id}`} key={index}>
                     <File className="w-[16px] h-[16px] text-color min-h-[16px] min-w-[16px]" />
-                    <p className="truncate">{page.title}</p>
+                    <p className="truncate">
+                      { upperFirst(page.title!) }
+                    </p>
                   </Link>
                 )
               })
