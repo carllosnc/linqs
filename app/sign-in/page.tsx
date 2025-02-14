@@ -28,7 +28,7 @@ export default function SignIn(props: any) {
 
       <GoogleButton />
 
-      <Link href="/" className="link-color">
+      <Link prefetch={false} href="/" className="link-color">
         Back to home →
       </Link>
 

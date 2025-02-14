@@ -1,34 +1,25 @@
+"use client"
+
 import { LogoHorizontal } from "@/components/logo";
-import { Tables } from "@/database.types";
-import { createClient } from "@/utils/supabase/server";
 import Link from "next/link";
 import { File, Lock } from "lucide-react";
 import { ThemeSwitcher } from "@/components/theme-switcher"
-import { redirect } from 'next/navigation'
+import { redirect, useParams } from "next/navigation";
+import { useGetProfileById } from "@/hooks/use-get-profile-by-user-id";
+import { LinksLoading } from "@/components/links/links-loading";
+import { upperFirst } from "@/lib/utils";
 
-export default async function ProfilePage({params}: {params:Promise<{id: string}>}) {
-   const supabase = await createClient();
-   const { id } = await params
+export default function ProfilePage() {
+  const params = useParams<{ id: string }>()
+  const { data, isLoading } = useGetProfileById(params.id)
 
-  const profileRequest = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-  if (profileRequest.data === null) {
-    return redirect('/not-found')
+  if (isLoading) {
+    return LinksLoading()
   }
 
-  const profileData = profileRequest.data as Tables<'profiles'>
-
-  const pagesRequest = await supabase
-    .from("pages")
-    .select("*")
-    .eq("user_id", id)
-    .order("created_at", { ascending: false });
-
-  const pagesData = pagesRequest.data as Tables<'pages'>[]
+  if (data?.profile === null) {
+    return redirect('/not-found')
+  }
 
   return (
     <main className="w-full bg-neutral-50 dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center justify-center">
@@ -36,41 +27,45 @@ export default async function ProfilePage({params}: {params:Promise<{id: string}
 
         <header className="flex w-full max-w-[360px] flex-col gap-[10px] items-center justify-center">
           <img
-            src={profileData.avatar_url!}
+            src={data?.profile.avatar_url!}
             alt="avatar"
             className="w-full max-w-[60px] h-auto rounded-full"
           />
-          <h1 className="title-color font-bold"> {profileData.full_name} </h1>
+          <h1 className="title-color font-bold">
+            { upperFirst(data?.profile.full_name!) }
+          </h1>
           <ThemeSwitcher />
         </header>
 
         <div className="w-full flex flex-col gap-[10px] max-w-[360px] bg-white dark:bg-neutral-900 border border-color rounded-xl shadow-2xl shadow-neutral-200 p-6 dark:shadow-none">
-          {pagesData.map((page, index) => {
-            if (page.isPublic) {
+          {data?.pages.map((page, index) => {
+            if (page.is_public) {
               return (
                 <Link
+                  prefetch={false}
                   className="text-color items-center hover:underline flex gap-[10px]"
                   href={`/links/${page.id}`}
                   key={index}>
                   <File size={15} />
-                  <span> {page.title} </span>
+                  <span> { upperFirst(page.title!) } </span>
                 </Link>
               )
             } else {
               return (
                 <Link
+                  prefetch={false}
                   className="danger-color items-center hover:underline flex gap-[10px]"
                   href={`/links/${page.id}`}
                   key={index}>
                   <Lock size={15} />
-                  <span> {page.title} </span>
+                  <span> { upperFirst(page.title!) } </span>
                 </Link>
               )
             }
           })}
         </div>
 
-        <Link href="/" className="link-color">
+        <Link prefetch={false} href="/" className="link-color text-sm">
           Go to home →
         </Link>
 

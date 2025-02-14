@@ -23,7 +23,7 @@ export default async function Home() {
             Linqs is a sleek, intuitive platform designed to help you effortlessly organize, manage, and share your favorite links.
           </p>
 
-          <Link href="/sign-in">
+          <Link prefetch={false} href="/sign-in">
             <Button> Get Started </Button>
           </Link>
         </div>

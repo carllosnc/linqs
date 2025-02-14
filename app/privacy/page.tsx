@@ -1,4 +1,4 @@
-import { LogoHorizontal, LogoVertical } from "@/components/logo"
+import { LogoVertical } from "@/components/logo"
 import Link from "next/link"
 
 export default async function Privacy(){
@@ -8,7 +8,7 @@ export default async function Privacy(){
 
         <LogoVertical className="w-[110px] h-auto fill-black dark:fill-white" />
 
-        <Link href="/" className="link-color">
+        <Link prefetch={false} href="/" className="link-color">
           Back to home →
         </Link>
 

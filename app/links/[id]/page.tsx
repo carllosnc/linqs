@@ -1,47 +1,24 @@
-import { Tables } from "@/database.types";
-import { createClient } from "@/utils/supabase/server";
+"use client"
+
 import { LogoSymbol, LogoHorizontal } from "@/components/logo"
-import { LinksLinkList } from "@/components/links/links-list";
-import { redirect } from 'next/navigation'
-import { Lock } from "lucide-react"
+import { LinksList } from "@/components/links/links-list";
 import { LinksSheet } from "@/components/links/links-sheet";
+import { Lock } from "lucide-react"
+import { useParams } from "next/navigation";
+import { useGetLinks } from "@/hooks/use-get-links";
 import Link from "next/link";
+import { LinksLoading } from "@/components/links/links-loading";
+import { upperFirst } from "@/lib/utils";
 
-export default async function PublicPage({params}: {params:Promise<{id: string}>}) {
-  const supabase = await createClient();
-  const { id } = await params
+export default function PublicPage() {
+  const params = useParams<{ id: string }>()
+  const { isLoading, data } = useGetLinks(params.id)
 
-  const singlePageRequest = await supabase
-    .from("pages")
-    .select("*")
-    .eq("id", id)
-    .single();
-
-  const singlePageData = singlePageRequest.data as Tables<'pages'>
-
-  if (singlePageData === null) {
-    return redirect("/not-found");
+  if (isLoading) {
+    return <LinksLoading />
   }
 
-  const userId = singlePageData.user_id
-
-  const linksRequest = await supabase
-    .from("links")
-    .select("*")
-    .eq("page_id", id)
-    .order("created_at", { ascending: false });
-
-  const linksData = linksRequest.data as Tables<'links'>[]
-
-  const profileRequest = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("id", userId)
-    .single();
-
-  const profileData = profileRequest.data as Tables<'profiles'>
-
-  if (!singlePageData.isPublic) {
+  if (!data?.page.is_public) {
     return (
       <main className="w-full bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center justify-center">
         <Lock size={50} className="text-neutral-300 dark:text-neutral-800" />
@@ -50,9 +27,9 @@ export default async function PublicPage({params}: {params:Promise<{id: string}>
           This page is private
         </h1>
 
-        <LinksSheet userId={userId as string} />
+        <LinksSheet userId={data?.page.user_id as string} />
 
-        <Link href="/" className="link-color">
+        <Link prefetch={false} href="/" className="link-color">
           Go to home →
         </Link>
 
@@ -66,19 +43,21 @@ export default async function PublicPage({params}: {params:Promise<{id: string}>
   }
 
   return (
-    <main className="w-full bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center">
-      <section className="flex flex-col gap-[20px] justify-between items-center w-full max-w-[400px]">
-        <Link href="/">
-          <LogoSymbol className="fill-black max-w-[50px] h-auto dark:fill-white" />
+    <main className="w-full bg-neutral-50 py-[25px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[25px] items-center">
+      <section className="flex items-center sm:flex-col px-[20px] gap-[20px] w-full max-w-[590px]">
+        <Link prefetch={false} href="/">
+          <LogoSymbol className="fill-neutral-400 max-w-[30px] h-auto dark:fill-neutral-700" />
         </Link>
 
-        <div className="text-center flex flex-col gap-[5px]">
-          <h1 className="text-[20px] title-color font-bold">
-            {singlePageData.title}
+        <div className="flex flex-col sm:text-center">
+          <h1 className="text-[18px] title-color font-bold">
+            { upperFirst(data?.page.title!) }
           </h1>
           {
-            singlePageData.descriptions &&
-            <span className="text-color"> {singlePageData.descriptions} </span>
+            data?.page.description &&
+            <span className="text-color">
+              {upperFirst(data?.page.description)}
+            </span>
           }
         </div>
       </section>
@@ -86,11 +65,15 @@ export default async function PublicPage({params}: {params:Promise<{id: string}>
       <hr className="w-full h-[1px] border-color border-dashed" />
 
       <div className="w-full">
-        <LinksLinkList email="carllosnc@gmail.com" userId={userId as string} links={linksData} />
+        <LinksList
+          email="carllosnc@gmail.com"
+          userId={data?.page.user_id!}
+          links={data?.links!}
+        />
       </div>
 
-      <Link href={`/profile/${profileData.id}`} className="link-color">
-        by {profileData.full_name}
+      <Link href={`/profile/${data?.profile.id}`} prefetch={false} className="link-color text-sm">
+        by {data?.profile.full_name}
       </Link>
 
       <div className="px-[20px] w-full">
@@ -99,3 +82,4 @@ export default async function PublicPage({params}: {params:Promise<{id: string}>
     </main>
   );
 }
+
