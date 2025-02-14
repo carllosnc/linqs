@@ -4,13 +4,13 @@ import { LogoVertical } from "@/components/logo"
 export function AuthContainer({ children }: { children: React.ReactNode }) {
   return (
     <main className="flex p-4 flex-col w-full min-h-screen gap-[30px] bg-neutral-50 dark:bg-neutral-950 justify-center items-center">
-      <Link href="/" >
+      <Link prefetch={false} href="/" >
         <LogoVertical className="w-[100px] h-auto fill-black dark:fill-white" />
       </Link>
 
       { children }
 
-      <Link className="link-color text-sm" href="/" >
+      <Link prefetch={false} className="link-color text-sm" href="/" >
        Back to home page →
       </Link>
     </main>
@@ -48,7 +48,7 @@ export function AuthSubtitle(
   return (
     <p className="flex gap-[5px] text-color text-sm">
       <span> {text } </span> <span>
-        <Link className="link-color" href={href}>
+        <Link prefetch={false} className="link-color" href={href}>
           {linkTitle}
         </Link>
       </span>
