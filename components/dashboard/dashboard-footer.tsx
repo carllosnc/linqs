@@ -1,3 +1,5 @@
+"use client"
+
 export function DashboardFooter() {
   return (
     <footer className="text-center relative -top-[1px] text-sm text-color border-t border-color">
