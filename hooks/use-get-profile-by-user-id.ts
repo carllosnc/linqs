@@ -6,7 +6,7 @@ export function useGetProfileById(userId: string) {
   const supabase = createClient();
 
   return useQuery({
-    queryKey: ["getSession"],
+    queryKey: ["useGetProfileById"],
     queryFn: async () => {
       const profileRequest = await supabase
         .from('profiles')
