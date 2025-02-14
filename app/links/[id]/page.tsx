@@ -46,7 +46,7 @@ export default function PublicPage() {
     <main className="w-full bg-neutral-50 py-[25px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[25px] items-center">
       <section className="flex items-center sm:flex-col px-[20px] gap-[20px] w-full max-w-[590px]">
         <Link prefetch={false} href="/">
-          <LogoSymbol className="fill-neutral-400 max-w-[30px] h-auto dark:fill-neutral-700" />
+          <LogoSymbol className="fill-black max-w-[30px] h-auto dark:fill-white" />
         </Link>
 
         <div className="flex flex-col sm:text-center">
