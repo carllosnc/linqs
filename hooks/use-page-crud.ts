@@ -3,7 +3,6 @@ import { createClient } from "@/utils/supabase/client"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { pagesAtom } from "@/atoms/pages-atom"
 import { useAtom } from "jotai"
-import { QueryCache } from "@tanstack/react-query"
 
 export function usePageCrud() {
   const supabase = createClient();
