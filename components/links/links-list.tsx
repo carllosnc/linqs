@@ -14,15 +14,15 @@ type props = {
   links: Tables<'links'>[]
 }
 
-export function LinksLinkList({ links, userId, email }: props) {
+export function LinksList({ links, userId, email }: props) {
   const [tiny, setTiny] = useState<boolean>(false);
 
   if (links.length === 0) {
     return (
-      <div className="px-4 w-full max-w-[550px] m-auto flex flex-col gap-[20px] justify-center items-center">
+      <div className="px-[20px] w-full max-w-[590px] m-auto flex flex-col gap-[20px] justify-center items-center">
         <LinksSheet userId={userId as string} />
 
-        <div className="bg-red text-center h-[150px] w-full bg-white dark:bg-neutral-900 border border-color rounded-lg shadow-2xl shadow-neutral-200 dark:shadow-none flex flex-col items-center justify-center gap-[10px] p-[20px]">
+        <div className="bg-red text-center h-[300px] w-full bg-white dark:bg-neutral-900 border border-color rounded-lg shadow-2xl shadow-neutral-200 dark:shadow-none flex flex-col items-center justify-center gap-[10px] p-[20px]">
           <AlertCircle className="text-color" />
           <span className="text-color">
             Page without links
