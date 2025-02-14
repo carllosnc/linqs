@@ -10,7 +10,7 @@ export function usePageCrud() {
 
   const getAllPages = useQuery({
     gcTime: 0,
-    queryKey: ["useGetPages"],
+    queryKey: ["getAllPages"],
     queryFn: async () =>{
       const { data: { user } } = await supabase.auth.getUser();
 
