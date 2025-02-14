@@ -1,3 +1,5 @@
+"use client"
+
 import { LogoHorizontal, LogoSymbol } from "@/components/logo";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { UserButton } from "@/components/user-button";
