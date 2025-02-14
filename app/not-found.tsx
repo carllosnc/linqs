@@ -18,7 +18,7 @@ export default function NotFound() {
             <p className="text-color">This page does not exist</p>
           </div>
 
-          <Link href="/" className="link-color">
+          <Link prefetch={false} href="/" className="link-color">
             Back to home →
           </Link>
         </div>
