@@ -22,27 +22,29 @@ export function UserButton() {
     return <Spinner size="sm" />
   }
 
+  console.log("session", data)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
           <AvatarImage
             className="w-8 h-8 rounded-full"
-            src={data?.user?.user_metadata?.avatar_url}
+            src={data?.session?.user.user_metadata.avatar_url}
           />
           <AvatarFallback className="bg-black dark:bg-neutral-300 text-white rounded-full dark:text-neutral-800 w-[34px] h-[34px] font-bold flex items-center justify-center text-xs">
-              {data?.user?.user_metadata?.full_name.slice(0, 2).toUpperCase()}
+              {data?.session?.user?.user_metadata?.full_name.slice(0, 2).toUpperCase()}
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
         <DropdownMenuLabel>
-          {data?.user?.user_metadata?.full_name}
+          {data?.session?.user.user_metadata?.full_name}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuLabel className="font-normal">
-          {data?.user?.email}
+          {data?.session?.user?.email}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={async () => {
