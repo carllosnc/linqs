@@ -7,7 +7,7 @@ export function useGetSinglePage(id: string) {
 
     return useQuery({
       gcTime: 0,
-      queryKey: ["getSinglePages", id],
+      queryKey: ["useGetSinglePage", id],
       queryFn: async () =>{
         const singlePageRequest = await supabase
           .from("pages")
