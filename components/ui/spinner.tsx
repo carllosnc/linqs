@@ -15,8 +15,8 @@ export function Spinner({ size = "md", color = "primary", className }: SpinnerPr
   }
 
   const colorClasses = {
-    primary: "text-blue-600",
-    secondary: "text-gray-600",
+    primary: "text-neutral-600",
+    secondary: "text-gray-400",
     success: "text-green-600",
     danger: "text-red-600",
     warning: "text-yellow-600",
