@@ -14,11 +14,10 @@ import {
   AlertDialogHeader
 } from "@/components/ui/alert-dialog";
 import { Spinner } from "@/components/ui/spinner";
-import { createClient } from "@/utils/supabase/client";
-import { useState } from "react";
 import { Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tables } from "@/database.types";
+import { usePageCrud } from "@/hooks/use-page-crud";
 
 type Props = {
   pageId: string
@@ -26,23 +25,14 @@ type Props = {
 }
 
 export function SinglePageDeleteButton({ pageId, page }: Props) {
-  const [loading, setLoading] = useState(false);
+  const { mutate, isPending, isSuccess } = usePageCrud().deletePage(pageId);
   const router = useRouter();
 
-  async function deletePage() {
-    setLoading(true);
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+  async function deletePageHandle() {
+    mutate();
 
-    await supabase
-      .from("pages")
-      .delete()
-      .eq("id", pageId)
-      .eq("user_id", user?.id)
+    router.push("/protected");
 
-    setLoading(false);
-
-    router.push("/protected")
     toast(
       `Page ${page.title} was deleted`,
       {
@@ -56,7 +46,7 @@ export function SinglePageDeleteButton({ pageId, page }: Props) {
       <AlertDialog>
         <AlertDialogTrigger asChild>
             <Button size="icon" variant="outline">
-            { loading
+            { isPending
               ? <Spinner size="sm" color="danger" />
               : <Trash className="text-color" size={15} />
             }
@@ -75,7 +65,7 @@ export function SinglePageDeleteButton({ pageId, page }: Props) {
               Cancel
             </AlertDialogCancel>
 
-            <AlertDialogAction onClick={deletePage}>
+            <AlertDialogAction onClick={deletePageHandle}>
               Continue
             </AlertDialogAction>
           </AlertDialogFooter>

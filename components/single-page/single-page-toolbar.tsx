@@ -18,7 +18,7 @@ type Props = {
 
 export function SinglePageToolbar({ pageId, page }: Props) {
     const [title, setTitle] = useState<string>(page.title as string)
-    const [descriptions, setDescriptions] = useState<string | null>(page.descriptions)
+    const [description, setdescription] = useState<string | null>(page.description)
 
     return (
     <div>
@@ -27,9 +27,9 @@ export function SinglePageToolbar({ pageId, page }: Props) {
           {title}
         </h2>
 
-        {descriptions &&
+        {description &&
           <p className="text-sm text-color text-center max-w-[500px] truncate">
-            {descriptions}
+            {description}
           </p>
         }
       </div>
@@ -56,9 +56,9 @@ export function SinglePageToolbar({ pageId, page }: Props) {
             </Button>
           </Link>
 
-          <SinglePageEditButton page={page} onChage={(title, descriptions) => {
+          <SinglePageEditButton page={page} onChage={(title, description) => {
             setTitle(title as string)
-            setDescriptions(descriptions as string | null)
+            setdescription(description as string | null)
           }} />
 
           <SinglePageDeleteButton pageId={pageId} page={page} />

@@ -6,12 +6,13 @@ import {
   SheetTitle,
   SheetTrigger
 } from "@/components/ui/sheet";
-import { useGetPages } from "@/hooks/use-get-pages";
+import { usePageCrud } from "@/hooks/use-page-crud";
 import Link from "next/link";
 import { File } from "lucide-react";
 
 export function SinglePageSheet(){
-  const { data, isLoading } = useGetPages()
+  const { isLoading } = usePageCrud().getAllPages;
+  const globalPages = usePageCrud().globalPages;
 
   if (isLoading) {
     return null
@@ -32,7 +33,7 @@ export function SinglePageSheet(){
 
           <div className="flex flex-col gap-[14px]">
             {
-              data?.pages.map((page, index) => {
+              globalPages.map((page, index) => {
                 return (
                   <Link prefetch={false} className="text-sm title-color items-center hover:underline flex gap-[10px] truncate" href={`/protected/page/${page.id}`} key={index}>
                     <File className="w-[16px] h-[16px] text-color min-h-[16px] min-w-[16px]" />

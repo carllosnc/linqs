@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -14,45 +13,33 @@ import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { newPageSchema } from "@/schemas/new-page-schema";
-import { Tables, TablesInsert, TablesUpdate } from "@/database.types";
+import { Tables } from "@/database.types";
 import { useState } from "react";
 import { Edit } from "lucide-react";
-import { Spinner } from "@/components/ui/spinner";
-import { createClient } from "@/utils/supabase/client";
+import { usePageCrud } from "@/hooks/use-page-crud";
 
 type Props = {
   page: Tables<'pages'>
-  onChage: (title: String, descriptions: String) => void
+  onChage: (title: String, description: String) => void
 }
 
 export function SinglePageEditButton({ page, onChage }: Props) {
-  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [title, setTitle] = useState<string>(page.title as string)
-  const [descriptions, setDescriptions] = useState<string | null>(page.descriptions)
+  const [description, setDescription] = useState<string | null>(page.description)
+  const { mutate, isPending } = usePageCrud().updatePage(page.id);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm({
     resolver: zodResolver(newPageSchema),
   });
 
   const onSubmit = async (data: any) => {
-    setLoading(true)
-    const supabase = createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    mutate(data)
 
-    const pageData: TablesUpdate<"pages"> = {
-      user_id: user?.id,
-      descriptions: data.description,
-      title: data.title,
-    };
-
-    await supabase.from("pages").update(pageData).eq("id", page.id)
-
-    setLoading(false)
     setOpen(false)
     reset()
     setTitle(data.title)
-    setDescriptions(data.description)
+    setDescription(data.description)
     onChage(data.title, data.description)
   };
 
@@ -98,15 +85,15 @@ export function SinglePageEditButton({ page, onChage }: Props) {
             </Label>
 
             <Input
-              defaultValue={descriptions!}
+              defaultValue={description!}
               placeholder="Enter page description"
               {...register('description')}
             />
           </div>
 
           <div>
-            <Button type="submit" size="sm" disabled={loading}>
-              {loading ? "Creating..." : "Create"}
+            <Button type="submit" size="sm" disabled={isPending}>
+              {isPending ? "Creating..." : "Create"}
             </Button>
           </div>
         </form>

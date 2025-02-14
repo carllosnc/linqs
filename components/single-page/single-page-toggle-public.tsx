@@ -9,7 +9,7 @@ type Props = {
 }
 
 export function SinglePageTogglePublic({ pageId, page }: Props) {
-  const [isPublic, setIsPublic] = useState<boolean>(page.isPublic)
+  const [is_public, setis_public] = useState<boolean>(page.is_public)
   const [loading, setLoading] = useState(false);
 
   async function togglePublic() {
@@ -19,12 +19,12 @@ export function SinglePageTogglePublic({ pageId, page }: Props) {
 
     const pageData: TablesUpdate<"pages"> = {
       user_id: user?.id,
-      isPublic: !isPublic,
+      is_public: !is_public,
     };
 
     await supabase.from("pages").update(pageData).eq("id", pageId)
     setLoading(false)
-    setIsPublic(!isPublic)
+    setis_public(!is_public)
   }
 
   return (
@@ -34,7 +34,7 @@ export function SinglePageTogglePublic({ pageId, page }: Props) {
       </span>
       <Switch
         disabled={loading}
-        checked={isPublic}
+        checked={is_public}
         onCheckedChange={togglePublic}
       />
     </div>

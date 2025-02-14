@@ -6,6 +6,7 @@ import { SinglePageToolbar } from "@/components/single-page/single-page-toolbar"
 import { SiglePageListLinks } from "@/components/single-page/single-page-list-links";
 import { useGetSinglePage } from "@/hooks/use-get-single-page";
 import { DashboardLoading } from "../dashboard/dashboard-loading";
+import { redirect } from "next/navigation";
 
 type Props = {
   id: string
@@ -18,6 +19,10 @@ export default function SinglePageContent({id}: Props) {
     return (
       <DashboardLoading />
     )
+  }
+
+  if (data?.page === null) {
+    return redirect('/not-found')
   }
 
   return (
