@@ -22,26 +22,27 @@ export function SinglePageToolbar({ pageId, page }: Props) {
 
     return (
     <div className="flex flex-col gap-[15px]">
-      <div className="justify-between items-center flex flex-col">
-        <h2 className="title-color text-[18px] max-w-[500px] text-center font-semibold">
-          {title}
-        </h2>
+      <div className="items-center flex gap-[20px]">
+        <Link prefetch={false} href="/protected">
+          <Button variant="outline" size="icon">
+            <ChevronLeft size={20} />
+          </Button>
+        </Link>
 
-        {description &&
-          <p className="text-sm text-color text-center max-w-[500px] truncate">
-            {description}
-          </p>
-        }
+        <div>
+          <h2 className="title-color text-[16px] max-w-[500px] font-semibold">
+            {title}
+          </h2>
+          {description &&
+            <p className="text-sm text-color max-w-[500px] truncate">
+              {description}
+            </p>
+          }
+        </div>
       </div>
 
       <div className="card-block flex md:flex-col md:gap-[20px] items-center justify-between">
         <div className="flex items-center gap-[20px]">
-          <Link prefetch={false} href="/protected">
-            <Button variant="outline" size="icon">
-              <ChevronLeft size={20} />
-            </Button>
-          </Link>
-
           <SinglePageSheet />
           <SinglePageNewLinkButton pageId={pageId} page={page} />
         </div>
