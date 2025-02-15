@@ -22,8 +22,6 @@ export function UserButton() {
     return <Spinner size="sm" />
   }
 
-  console.log("session", data)
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
