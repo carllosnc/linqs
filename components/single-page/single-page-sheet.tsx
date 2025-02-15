@@ -25,7 +25,7 @@ export function SinglePageSheet(){
           Pages
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-full max-w-[280px] no-scrollbar overflow-y-auto">
+      <SheetContent side="left" className="w-full max-w-[300px] md:!max-w-[300px] no-scrollbar overflow-y-auto">
         <SheetHeader className="text-left flex flex-col gap-[10px]">
           <SheetTitle className="text-md">Your pages</SheetTitle>
 
