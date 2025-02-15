@@ -34,7 +34,7 @@ export function SinglePageToolbar({ pageId, page }: Props) {
         }
       </div>
 
-      <div className="card-block flex items-center justify-between">
+      <div className="card-block flex md:flex-col md:gap-[20px] items-center justify-between">
         <div className="flex items-center gap-[20px]">
           <Link prefetch={false} href="/protected">
             <Button variant="outline" size="icon">
@@ -45,6 +45,8 @@ export function SinglePageToolbar({ pageId, page }: Props) {
           <SinglePageSheet />
           <SinglePageNewLinkButton pageId={pageId} page={page} />
         </div>
+
+        <hr className="w-full hidden md:block border-neutral-200 dark:border-neutral-800" />
 
         <div className="flex gap-[20px]">
 
