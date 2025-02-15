@@ -56,7 +56,7 @@ export function LinksLinkCard({ link, tiny }: props) {
 
   return (
     <a
-      className="p-5 w-full rounded-lg sm:rounded-none transition-all bg-white dark:bg-neutral-900 border border-color sm:border-l-0 sm:border-r-0 flex-col shadow-2xl shadow-neutral-200 dark:shadow-none overflow-hidden flex gap-[10px] hover:border-blue-500"
+      className="card-block card-linkable flex flex-col gap-[10px]"
       href={link.url!}
       target="_blank"
       rel="noreferrer"
