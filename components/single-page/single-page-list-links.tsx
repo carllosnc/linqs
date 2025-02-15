@@ -22,8 +22,8 @@ export function SiglePageListLinks({ links }: Props) {
   const filteredLinks = listOfLinks.filter(filterLinks);
 
   return (
-    <section>
-      <header className="px-4 py-6 flex items-center gap-[20px] border-b border-color">
+    <section className="flex flex-col gap-[15px]">
+      <header className="card-block flex gap-4 items-center">
         <ListFilter className="w-[25px] h-[25px] min-w-[25px] min-h-[25px]" />
         <Input
           value={filter}
@@ -32,7 +32,7 @@ export function SiglePageListLinks({ links }: Props) {
         />
       </header>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-[15px]">
         {filteredLinks.length > 0 ? (
           filteredLinks.map((link, index) => (
             <SinglePageLinkCard link={link} key={link.id} />

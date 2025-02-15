@@ -21,8 +21,8 @@ export function SinglePageToolbar({ pageId, page }: Props) {
     const [description, setdescription] = useState<string | null>(page.description)
 
     return (
-    <div>
-      <div className="px-4 py-4 border-b border-color justify-between items-center flex flex-col">
+    <div className="flex flex-col gap-[15px]">
+      <div className="justify-between items-center flex flex-col">
         <h2 className="title-color text-[18px] max-w-[500px] text-center font-semibold">
           {title}
         </h2>
@@ -34,11 +34,11 @@ export function SinglePageToolbar({ pageId, page }: Props) {
         }
       </div>
 
-      <div className="flex items-center justify-between p-4 border-b border-color">
+      <div className="card-block flex items-center justify-between">
         <div className="flex items-center gap-[20px]">
           <Link prefetch={false} href="/protected">
             <Button variant="outline" size="icon">
-                <ChevronLeft size={20} />
+              <ChevronLeft size={20} />
             </Button>
           </Link>
 

@@ -20,8 +20,8 @@ export function DashboardListPages({ pages }: Props) {
   const filteredPages = pages.filter(filterPages);
 
   return (
-    <section>
-      <header className="px-4 bg-white dark:bg-neutral-900 py-6 flex items-center gap-[20px] border-b border-color">
+    <section className="flex flex-col gap-[15px]">
+      <header className="flex items-center gap-[20px] card-block">
         <ListFilter className="w-[30px] h-[30px]" />
         <Input
           value={filter}
@@ -29,7 +29,8 @@ export function DashboardListPages({ pages }: Props) {
           placeholder="Filter page by name"
         />
       </header>
-      <div>
+
+      <div className="flex flex-col gap-[15px]">
         {filteredPages.length > 0 ? (
           filteredPages.map((page, index) => (
             <DashboardPageCard

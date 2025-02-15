@@ -36,16 +36,16 @@ export function DashboardPageCard({ page }: Props) {
   return (
     <Link
       href={`/protected/page/${page.id}`}
-      className="bg-white dark:bg-neutral-900 border-b border-color hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all cursor-pointer w-full p-4 flex justify-between items-center gap-[20px]">
+      className="card-block card-linkable flex justify-between items-center">
 
       <div className="flex gap-[15px] items-center">
-        <File className="text-neutral-400 dark:text-neutral-600 w-[25px] h-[25px]" />
+        <File className="text-neutral-400 dark:text-neutral-600 w-[25px] h-[25px]"/>
 
-        <div className="flex flex-col gap-[3px] w-full max-w-[7 00px]">
-          <div className="flex gap-[10px] items-center">
+        <div className="flex flex-col gap-[3px] w-full">
+          <div className="flex  gap-[10px] items-center">
             {
               wasCreatedToday(page.created_at)
-              && <Badge className="bg-black dark:bg-white dark:text-black rounded-sm h-[22px] text-white">New</Badge>
+              && <Badge className="bg-black dark:bg-white dark:text-black rounded-sm px-[6px] text-center h-[20px] text-white"> New </Badge>
             }
             <h2 className="text-[16px] font-semibold title-color truncate">
               { upperFirst(page.title!) }

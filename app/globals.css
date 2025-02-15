@@ -69,6 +69,10 @@
 }
 
 @layer components {
+  .debug {
+    @apply outline-red-500 outline;
+  }
+
   .title-color {
     @apply text-neutral-700 dark:text-neutral-100
   }
@@ -81,12 +85,43 @@
     @apply text-blue-600 dark:text-blue-300 hover:underline
   }
 
-  .border-color {
-    @apply border-neutral-200 dark:border-neutral-800
-  }
-
   .danger-color {
     @apply text-red-500 dark:text-red-400
+  }
+
+  .card-linkable {
+    @apply hover:!border-blue-500 transition-all dark:hover:!border-blue-300
+  }
+
+  .page-bg {
+    @apply bg-neutral-100 dark:bg-neutral-950
+  }
+
+  .border-color {
+    @apply border-neutral-200 dark:border-neutral-900
+  }
+
+  .dialog-content {
+    @apply
+    border
+    gap-[30px]
+    border-white
+    dark:border-neutral-800
+    rounded-lg
+  }
+
+  .card-block {
+    @apply
+    shadow-md
+    border
+    rounded-lg
+    p-4
+    bg-white
+    shadow-neutral-100
+    border-neutral-200
+    dark:bg-neutral-900
+    dark:shadow-none
+    dark:border-neutral-800
   }
 }
 
@@ -124,7 +159,14 @@
   }
 
   h2 {
-    @apply text-xl font-bold pb-[10px] border-b border-color w-full;
+    @apply
+      text-xl
+      font-bold
+      pb-[10px]
+      border-b
+      border-neutral-200
+      dark:border-neutral-900
+      w-full;
   }
 
   h3 {

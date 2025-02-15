@@ -55,7 +55,7 @@ export function SinglePageLinkCard({ link }: props) {
   }, [imageRef]);
 
   return (
-    <article className="transition-all md:flex-col md:items-start overflow-hidden flex items-center border-b border-color gap-[20px] py-[15px] px-4">
+    <article className="card-block card-linkable md:flex-col md:items-start overflow-hidden flex items-center">
       <Link
         prefetch={false}
         className="w-full"
@@ -64,7 +64,9 @@ export function SinglePageLinkCard({ link }: props) {
         rel="noreferrer"
       >
         <div className="flex flex-col gap-[10px]">
-          <span className="link-color text-[14px] truncate max-w-[600px]"> { link.url! } </span>
+          <span className="link-color text-[14px] truncate max-w-[600px]">
+            { link.url! }
+          </span>
 
           <div className="flex items-center gap-[10px]">
             <div className="p-[3px] dark:bg-neutral-700 rounded-[3px]">

@@ -18,10 +18,10 @@ export default function ProtectedPage() {
   }
 
   return (
-    <main className="w-full bg-neutral-50 dark:bg-neutral-950 min-h-screen flex flex-col justify-between">
+    <main className="w-full page-bg min-h-screen flex flex-col justify-between">
       <DashboardHeader />
 
-      <section className="bg-white dark:bg-neutral-900 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px]">
+      <section className="p-4 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px] flex flex-col gap-[15px]">
         <DashboardNewPage pages={globalPages} userId={data?.user?.id!} />
         <DashboardListPages pages={globalPages} />
       </section>

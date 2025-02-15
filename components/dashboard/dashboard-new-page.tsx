@@ -16,7 +16,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { newPageSchema } from "@/schemas/new-page-schema";
 import { Tables } from "@/database.types";
 import { useState } from "react";
-import { File } from "lucide-react";
+import { File, User } from "lucide-react";
 import Link from "next/link";
 import { usePageCrud } from "@/hooks/use-page-crud";
 
@@ -42,17 +42,19 @@ export function DashboardNewPage({ pages, userId }: Props) {
   };
 
   return (
-    <div className="flex bg-white dark:bg-neutral-900 items-center justify-between p-4 border-b border-color">
+    <div className="card-block flex items-center justify-between">
+
       <span className="text-color"> {globalPages.length} Pages </span>
 
       <div className="flex gap-[10px]">
         <Link prefetch={false} href={`/profile/${userId}`} target="_blank">
           <Button variant="outline">
+            <User className="w-4 h-4 mr-2" />
             Public profile
           </Button>
         </Link>
 
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={open} onOpenChange={setOpen} >
           <DialogTrigger asChild>
             <Button>
               <File className="w-4 h-4 mr-2" />
@@ -60,7 +62,7 @@ export function DashboardNewPage({ pages, userId }: Props) {
             </Button>
           </DialogTrigger>
 
-          <DialogContent className="border gap-[30px] border-white dark:border-neutral-800">
+          <DialogContent className="dialog-content">
             <DialogHeader className="flex flex-col">
               <DialogTitle>Create new page</DialogTitle>
               <DialogDescription>

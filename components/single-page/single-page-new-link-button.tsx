@@ -66,7 +66,7 @@ export function SinglePageNewLinkButton({ pageId, page }: Props) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="border gap-[30px] border-white dark:border-neutral-800">
+      <DialogContent className="border dialog-content gap-[30px] border-white dark:border-neutral-800">
         <DialogHeader className="text-left">
           <DialogTitle className="font-medium"> Create new link </DialogTitle>
         </DialogHeader>
