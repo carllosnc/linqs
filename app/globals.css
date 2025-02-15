@@ -114,11 +114,11 @@
     @apply
     shadow-md
     border
-    rounded-lg
+    rounded-md
     p-4
     bg-white
-    shadow-neutral-100
-    border-neutral-200
+    shadow-neutral-200
+    border-neutral-300
     dark:bg-neutral-900
     dark:shadow-none
     dark:border-neutral-800
