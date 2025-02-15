@@ -48,7 +48,7 @@ export function LinksList({ links, userId, email }: props) {
         <ThemeSwitcher />
       </div>
 
-      <div className="w-full max-w-[550px] flex flex-col gap-[20px]">
+      <div className="w-full max-w-[550px] md:px-4 flex flex-col gap-[20px]">
         {
           links.map((link, index) => {
             return (
