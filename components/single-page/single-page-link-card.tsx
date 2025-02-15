@@ -55,7 +55,7 @@ export function SinglePageLinkCard({ link }: props) {
   }, [imageRef]);
 
   return (
-    <article className="card-block card-linkable md:flex-col md:items-start overflow-hidden flex items-center">
+    <article className="card-block card-linkable md:flex-col md:gap-[20px] md:items-start overflow-hidden flex items-center">
       <Link
         prefetch={false}
         className="w-full"
