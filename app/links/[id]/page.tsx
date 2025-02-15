@@ -20,7 +20,7 @@ export default function PublicPage() {
 
   if (!data?.page.is_public) {
     return (
-      <main className="w-full bg-neutral-50 py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center justify-center">
+      <main className="w-full page-bg min-h-screen flex flex-col gap-[30px] items-center justify-center">
         <Lock size={50} className="text-neutral-300 dark:text-neutral-800" />
 
         <h1 className="text-color text-center text-[22px]">
@@ -43,7 +43,7 @@ export default function PublicPage() {
   }
 
   return (
-    <main className="w-full bg-neutral-50 py-[25px] dark:bg-neutral-950 min-h-screen flex flex-col gap-[25px] items-center">
+    <main className="w-full page-bg py-[25px] min-h-screen flex flex-col gap-[25px] items-center">
       <section className="flex items-center sm:flex-col px-[20px] gap-[20px] w-full max-w-[590px]">
         <Link prefetch={false} href="/">
           <LogoSymbol className="fill-black max-w-[30px] h-auto dark:fill-white" />
@@ -62,7 +62,7 @@ export default function PublicPage() {
         </div>
       </section>
 
-      <hr className="w-full h-[1px] border-color border-dashed" />
+      <hr className="w-full h-[1px] border-t border-neutral-300 border-dashed dark:border-neutral-800" />
 
       <div className="w-full">
         <LinksList
