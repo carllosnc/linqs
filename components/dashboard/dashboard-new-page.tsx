@@ -46,7 +46,7 @@ export function DashboardNewPage({ pages, userId }: Props) {
 
       <span className="text-color"> {globalPages.length} Pages </span>
 
-      <div className="flex gap-[10px]">
+      <div className="flex gap-[10px] sm:flex-col">
         <Link prefetch={false} href={`/profile/${userId}`} target="_blank">
           <Button variant="outline">
             <User className="w-4 h-4 mr-2" />
