@@ -82,7 +82,7 @@
   }
 
   .link-color {
-    @apply text-blue-600 dark:text-blue-300 hover:underline
+    @apply text-blue-600 dark:text-blue-300 hover:underline hover:!shadow-none
   }
 
   .danger-color {
