@@ -22,7 +22,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <main className="w-full bg-neutral-50 dark:bg-neutral-950 min-h-screen flex flex-col gap-[30px] items-center justify-center">
+    <main className="w-full page-bg min-h-screen flex flex-col gap-[30px] items-center justify-center">
       <div className="min-h-screen px-[20px] py-[50px] bg-center w-full max-w-[450px] flex flex-col gap-[20px] items-center justify-center">
 
         <header className="flex w-full max-w-[360px] flex-col gap-[10px] items-center justify-center">
@@ -37,7 +37,7 @@ export default function ProfilePage() {
           <ThemeSwitcher />
         </header>
 
-        <div className="w-full flex flex-col gap-[10px] max-w-[360px] bg-white dark:bg-neutral-900 border border-color rounded-xl shadow-2xl shadow-neutral-200 p-6 dark:shadow-none">
+        <div className="w-full card-block flex flex-col gap-[10px] max-w-[360px]">
           {data?.pages.map((page, index) => {
             if (page.is_public) {
               return (
@@ -70,7 +70,7 @@ export default function ProfilePage() {
         </Link>
 
         <div className="px-[20px] pt-[20px] w-full">
-          <LogoHorizontal className="fill-neutral-300 m-auto w-full max-w-[150px] h-auto dark:fill-neutral-800" />
+          <LogoHorizontal className="fill-neutral-400 m-auto w-full max-w-[150px] h-auto dark:fill-neutral-700" />
         </div>
       </div>
    </main>
