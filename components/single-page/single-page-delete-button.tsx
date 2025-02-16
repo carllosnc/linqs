@@ -52,7 +52,7 @@ export function SinglePageDeleteButton({ pageId, page }: Props) {
             }
           </Button>
         </AlertDialogTrigger>
-        <AlertDialogContent>
+        <AlertDialogContent className="dialog-content">
           <AlertDialogHeader>
             <AlertDialogTitle>Are you sure?</AlertDialogTitle>
             <AlertDialogDescription>
