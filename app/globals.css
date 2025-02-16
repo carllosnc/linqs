@@ -106,8 +106,17 @@
     border
     gap-[30px]
     border-white
+    dark:bg-neutral-900
     dark:border-neutral-800
     rounded-lg
+  }
+
+  .sheet-content {
+    @apply
+    border
+    border-white
+    dark:bg-neutral-900
+    dark:border-neutral-800
   }
 
   .card-block {
