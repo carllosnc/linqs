@@ -53,8 +53,9 @@ export function DashboardPageCard({ page }: Props) {
           </div>
 
           {
-            page.description &&
-            <span className="text-color truncate"> → { page.description } </span>
+            page.description
+              ? <span className="text-color truncate"> → { page.description } </span>
+              : <span className="text-color truncate"> → No description</span>
           }
 
           <small className="text-color"> { formatDate(page.created_at) } </small>
