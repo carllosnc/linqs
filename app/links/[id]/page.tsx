@@ -18,14 +18,13 @@ export default function PublicPage() {
   if (isLoading) {
     return <LinksLoading />
   }
- 
+
   function GoToDashboard(){
     if (data?.user) {
       return(
         <Link className="fixed bottom-[20px] right-[20px] z-10" href="/protected">
-          <Button>
-            <LayoutPanelTop className="w-4 h-4 mr-2" />
-            Go to dashboard
+          <Button size="icon">
+            <LayoutPanelTop className="w-5 h-5" />
           </Button>
         </Link>
       )
