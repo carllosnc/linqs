@@ -68,11 +68,11 @@ export function SinglePageLinkCard({ link }: props) {
             { link.url! }
           </span>
 
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[20px]">
             <div className="p-[3px] dark:bg-neutral-700 rounded-[3px]">
               <img src={getFavicon(link.url!)} alt="favicon" className="w-[20px] h-[20px] min-w-[20px] min-h-[20px]" />
             </div>
-            <span className="title-color"> { link.title! } </span>
+            <span className="title-color max-w-[500px]"> { link.title! } </span>
           </div>
         </div>
       </Link>
