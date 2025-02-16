@@ -1,7 +1,7 @@
 "use client"
 
 import { Tables } from "@/database.types"
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
 type props = {
   tiny: boolean,
@@ -42,7 +42,7 @@ export function LinksLinkCard({ link, tiny }: props) {
     }
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setTimeout(() => {
       checkRatio();
     }, 500);
