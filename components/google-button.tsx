@@ -23,7 +23,7 @@ export function GoogleButton() {
       variant="outline"
       type="button"
       onClick={loginWithGoogle}>
-      <FcGoogle className="w-7 h-7" />
+      <FcGoogle className="w-5 h-5" />
       Sign in with Google
     </Button>
   )
