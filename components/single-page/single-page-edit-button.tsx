@@ -51,7 +51,7 @@ export function SinglePageEditButton({ page, onChage }: Props) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="border gap-[30px] border-white dark:border-neutral-800">
+      <DialogContent className="dialog-content">
         <DialogHeader className="flex flex-col">
           <DialogTitle className="font-medium"> Edit page: {page.title} </DialogTitle>
         </DialogHeader>
