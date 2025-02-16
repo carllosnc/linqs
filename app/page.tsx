@@ -21,7 +21,7 @@ export default function Home() {
             The better place to organize and share favorite links
           </h1>
 
-          <p className="text-center text-neutral-500 w-full text-lg md:text-md max-w-[500px]">
+          <p className="text-center text-neutral-500 w-full text-[20px] md:text-md max-w-[600px]">
             Linqs is a sleek, intuitive platform designed to help you effortlessly organize, manage, and share your favorite links.
           </p>
 
@@ -29,6 +29,16 @@ export default function Home() {
             <Button> Get Started </Button>
           </Link>
         </div>
+
+        <hr className="border-color" />
+
+        <div className="p-6 flex flex-col w-full items-center justify-center gap-[20px]">
+          <p className="text-center text-[20px] max-w-[600px] text-neutral-500">
+            This is a personal project that I'm developing for free. The main goal is to practice my frontend skills and solve some problems that I have in my daily life with my bookmarks.
+          </p>
+        </div>
+
+        <hr className="border-color" />
 
           <Illustration className="w-full h-auto fill-neutral-300 dark:fill-neutral-800" />
       </div>
