@@ -20,7 +20,7 @@ export default function SignIn(props: any) {
   }, []);
 
   return (
-    <main className="w-full justify-center gap-[40px] bg-white py-[30px] dark:bg-neutral-950 min-h-screen flex flex-col items-center">
+    <main className="page-bg w-full justify-center gap-[40px] py-[30px] min-h-screen flex flex-col items-center">
       <div className="flex flex-col gap-[10px] items-center">
         <LogoVertical className="fill-black max-w-[150px] h-auto dark:fill-white" />
         <h2 className="title-color text-color text-[18px]">Do login to continue.</h2>
