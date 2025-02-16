@@ -3,12 +3,13 @@
 import { LogoSymbol, LogoHorizontal } from "@/components/logo"
 import { LinksList } from "@/components/links/links-list";
 import { LinksSheet } from "@/components/links/links-sheet";
-import { Lock } from "lucide-react"
+import { LayoutPanelTop, Lock } from "lucide-react"
 import { useParams } from "next/navigation";
 import { useGetLinks } from "@/hooks/use-get-links";
 import Link from "next/link";
 import { LinksLoading } from "@/components/links/links-loading";
 import { upperFirst } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export default function PublicPage() {
   const params = useParams<{ id: string }>()
@@ -16,6 +17,19 @@ export default function PublicPage() {
 
   if (isLoading) {
     return <LinksLoading />
+  }
+
+  function GoToDashboard(){
+    if (data?.user) {
+      return(
+        <Link className="fixed bottom-[20px] right-[20px] z-10" href="/protected">
+          <Button>
+            <LayoutPanelTop className="w-4 h-4 mr-2" />
+            Go to dashboard
+          </Button>
+        </Link>
+      )
+    }
   }
 
   if (!data?.page.is_public) {
@@ -43,11 +57,13 @@ export default function PublicPage() {
   }
 
   return (
-    <main className="w-full page-bg py-[25px] min-h-screen flex flex-col gap-[25px] items-center">
+    <main className="relative w-full page-bg py-[25px] min-h-screen flex flex-col gap-[25px] items-center">
       <section className="flex items-center sm:flex-col px-[20px] gap-[20px] w-full max-w-[590px]">
         <Link prefetch={false} href="/">
           <LogoSymbol className="fill-black max-w-[30px] h-auto dark:fill-white" />
         </Link>
+
+        <GoToDashboard />
 
         <div className="flex flex-col sm:text-center">
           <h1 className="text-[18px] title-color font-bold">
