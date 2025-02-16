@@ -34,10 +34,13 @@ export function useGetLinks(id: string) {
 
         const profileData = profileRequest.data as Tables<'profiles'>
 
+        const {data: {user}} = await supabase.auth.getUser()
+
         return {
           page: singlePageData,
           links: linksData,
-          profile: profileData
+          profile: profileData,
+          user: user
         };
       }
   })
