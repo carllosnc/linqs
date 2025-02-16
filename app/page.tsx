@@ -6,6 +6,8 @@ import { Illustration } from "@/components/illustration";
 import { LogoSymbol } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { SiNextdotjs, SiTypescript, SiReact, SiSupabase } from "react-icons/si";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 export default function Home() {
   return (
@@ -36,6 +38,51 @@ export default function Home() {
           <p className="text-center text-[20px] max-w-[600px] text-neutral-500">
             This is a personal project that I'm developing for free. The main goal is to practice my frontend skills and solve some problems that I have in my daily life with my bookmarks.
           </p>
+
+          <span className="text-color">
+            The current stack for this project:
+          </span>
+
+          <div className="flex gap-[10px]">
+
+            <TooltipProvider delayDuration={0}>
+              <Tooltip>
+                <TooltipTrigger>
+                  <SiNextdotjs className="bg-white dark:bg-neutral-800 dark:shadow-none p-[14px] w-[50px] h-[50px] rounded-lg shadow text-neutral-400 dark:text-neutral-500" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Next.js</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger>
+                  <SiTypescript className="bg-white dark:bg-neutral-800 dark:shadow-none p-[14px] w-[50px] h-[50px] rounded-lg shadow text-neutral-400 dark:text-neutral-500" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Typescript</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger>
+                  <SiReact className="bg-white dark:bg-neutral-800 dark:shadow-none p-[14px] w-[50px] h-[50px] rounded-lg shadow text-neutral-400 dark:text-neutral-500" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>React</p>
+                </TooltipContent>
+              </Tooltip>
+
+              <Tooltip>
+                <TooltipTrigger>
+                  <SiSupabase className="bg-white dark:bg-neutral-800 dark:shadow-none p-[14px] w-[50px] h-[50px] rounded-lg shadow text-neutral-400 dark:text-neutral-500" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Supabase</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
 
         <hr className="border-color" />
