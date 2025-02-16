@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import { useGetPagesByUserId } from "@/hooks/use-get-pages-by-user-id";
 import Link from "next/link";
-import { File, MenuIcon } from "lucide-react";
+import { File, MenuIcon, Lock } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Spinner } from "@/components/ui/spinner";
 import { upperFirst } from "@/lib/utils"
@@ -41,10 +41,10 @@ export function LinksSheet({ userId }: Props) {
           <span>{firstName(data?.profile.full_name!)}' Pages</span>
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-full max-w-[300px] no-scrollbar md:!max-w-[260px] overflow-y-auto">
-        <SheetHeader className="text-left">
 
-          <div className="flex flex-col justify-center items-center gap-[10px] pb-[20px] mb-[20px] border-b border-color">
+      <SheetContent side="left" className="flex flex-col gap-[20px] w-full max-w-[300px] no-scrollbar md:!max-w-[260px] overflow-y-auto sheet-content">
+        <SheetHeader className="text-left">
+          <div className="flex flex-col justify-center items-center gap-[10px]">
             <Avatar>
               <AvatarImage
                 className="w-12 h-12 rounded-full"
@@ -56,25 +56,40 @@ export function LinksSheet({ userId }: Props) {
               {data?.profile?.full_name}'s pages
             </SheetTitle>
           </div>
+        </SheetHeader>
 
-          <div className="flex flex-col gap-[14px]">
-            {
-              data?.pages!.map((page, index) => {
+        <hr />
+
+        <div className="flex flex-col gap-[14px]">
+          {
+            data?.pages!.map((page, index) => {
+
+              if (page.is_public) {
                 return (
                   <Link
-                  prefetch={false}
-                  className="text-sm title-color items-center hover:underline flex gap-[10px] truncate" href={`/links/${page.id}`} key={index}>
+                    prefetch={false}
+                    className="text-sm text-color items-center hover:underline flex gap-[10px] truncate" href={`/links/${page.id}`} key={index}>
                     <File className="w-[16px] h-[16px] text-color min-h-[16px] min-w-[16px]" />
                     <p className="truncate">
                       { upperFirst(page.title!) }
                     </p>
                   </Link>
                 )
-              })
-            }
-          </div>
+              }
 
-        </SheetHeader>
+              return (
+                <Link
+                prefetch={false}
+                className="text-sm danger-color items-center hover:underline flex gap-[10px] truncate" href={`/links/${page.id}`} key={index}>
+                  <Lock className="w-[16px] h-[16px] text-color min-h-[16px] min-w-[16px] danger-color" />
+                  <p className="truncate">
+                    { upperFirst(page.title!) }
+                  </p>
+                </Link>
+              )
+            })
+          }
+        </div>
       </SheetContent>
     </Sheet>
   )
