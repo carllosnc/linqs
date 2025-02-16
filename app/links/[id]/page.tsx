@@ -18,7 +18,7 @@ export default function PublicPage() {
   if (isLoading) {
     return <LinksLoading />
   }
-
+ 
   function GoToDashboard(){
     if (data?.user) {
       return(
