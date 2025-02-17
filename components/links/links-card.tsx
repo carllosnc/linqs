@@ -1,7 +1,7 @@
 "use client"
 
 import { Tables } from "@/database.types"
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type props = {
   tiny: boolean,
@@ -19,33 +19,33 @@ export function LinksLinkCard({ link, tiny }: props) {
 
   function checkRatio(){
     if (imageRef.current) {
-      const imageWidth = imageRef.current!.naturalWidth
+      imageRef.current!.onload = () => {
+        const imageWidth = imageRef.current!.naturalWidth
 
-      if (imageWidth !== 0){
-        imageRef.current!.classList.remove("hidden");
-        imageRef.current!.classList.add("fade-in");
+        if (imageWidth !== 0){
+          imageRef.current!.classList.remove("hidden");
+          imageRef.current!.classList.add("fade-in");
 
-        switch (true) {
-          case imageWidth <= 60:
-            imageRef.current!.classList.add("display-none");
-          case imageWidth <= 100:
-            imageRef.current!.classList.add("width-100");
-            break;
-          case imageWidth <= 200:
-            imageRef.current!.classList.add("width-200");
-            break;
-          case imageWidth <= 300:
-            imageRef.current!.classList.add("width-300");
-            break;
+          switch (true) {
+            case imageWidth <= 60:
+              imageRef.current!.classList.add("display-none");
+            case imageWidth <= 100:
+              imageRef.current!.classList.add("width-100");
+              break;
+            case imageWidth <= 200:
+              imageRef.current!.classList.add("width-200");
+              break;
+            case imageWidth <= 300:
+              imageRef.current!.classList.add("width-300");
+              break;
+          }
         }
       }
     }
   }
 
-  useLayoutEffect(() => {
-    setTimeout(() => {
-      checkRatio();
-    }, 500);
+  useEffect(() => {
+    checkRatio();
   }, [imageRef, tiny]);
 
   function getHost(url: string){
