@@ -43,7 +43,7 @@ export default function ProfilePage() {
               return (
                 <Link
                   prefetch={false}
-                  className="text-color items-center hover:underline flex gap-[10px]"
+                  className="text-color text-sm items-center hover:underline flex gap-[10px]"
                   href={`/links/${page.id}`}
                   key={index}>
                   <File size={15} />
@@ -54,7 +54,7 @@ export default function ProfilePage() {
               return (
                 <Link
                   prefetch={false}
-                  className="danger-color items-center hover:underline flex gap-[10px]"
+                  className="danger-color text-sm items-center hover:underline flex gap-[10px]"
                   href={`/links/${page.id}`}
                   key={index}>
                   <Lock size={15} />
