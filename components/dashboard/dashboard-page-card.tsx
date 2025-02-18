@@ -47,15 +47,15 @@ export function DashboardPageCard({ page }: Props) {
               wasCreatedToday(page.created_at)
               && <Badge className="bg-black dark:bg-white dark:text-black rounded-sm px-[6px] text-center h-[20px] text-white"> New </Badge>
             }
-            <h2 className="text-[16px] font-semibold title-color truncate">
+            <h2 className="text-[16px] font-semibold title-color">
               { upperFirst(page.title!) }
             </h2>
           </div>
 
           {
             page.description
-              ? <span className="text-color truncate"> → { page.description } </span>
-              : <span className="text-color truncate"> → No description</span>
+              ? <span className="text-color"> → { page.description } </span>
+              : <span className="text-color"> → No description</span>
           }
 
           <small className="text-color"> { formatDate(page.created_at) } </small>
