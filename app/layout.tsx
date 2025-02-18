@@ -10,8 +10,8 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Linqs",
-  description: "The better place to share and organize links",
+  title: "Linqs • Save • Manage • Share",
+  description: "Linqs is a sleek, intuitive platform designed to help you effortlessly organize, manage, and share your favorite links.",
 };
 
 const geistSans = Geist({
