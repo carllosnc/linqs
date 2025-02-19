@@ -23,7 +23,7 @@ export default function Home() {
 
           <LogoSymbol className="w-[80px] h-auto fill-black dark:fill-white" />
 
-          <h1 className="text-[90px] leading-[90px] w-full max-w-[500px] md:text-[70px] md:leading-[70px] font-black text-center">
+          <h1 className="text-[80px] leading-[70px] w-full max-w-[500px] md:text-[70px] md:leading-[60px] font-extrabold text-center">
             <span>Save</span> <br />
             <span>Manage</span> <br />
             <span>Share</span> <br />
@@ -38,7 +38,7 @@ export default function Home() {
 
         <hr className="border-color" />
 
-        <div className="p-6 flex flex-col w-full items-center justify-center gap-[20px]">
+        <div className="px-6 flex flex-col w-full items-center justify-center gap-[20px]">
           <p className="text-center text-[20px] max-w-[600px] text-color">
             This is a personal project that I'm developing for free. The main goal is to practice my frontend skills and solve some problems that I have in my daily life with my bookmarks.
           </p>
@@ -88,8 +88,6 @@ export default function Home() {
             </TooltipProvider>
           </div>
         </div>
-
-        <hr className="border-color" />
 
         <Illustration className="w-full h-auto fill-neutral-300 dark:fill-neutral-800" />
       </div>
