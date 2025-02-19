@@ -8,6 +8,7 @@ import { redirect, useParams } from "next/navigation";
 import { useGetProfileById } from "@/hooks/use-get-profile-by-user-id";
 import { LinksLoading } from "@/components/links/links-loading";
 import { upperFirst } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function ProfilePage() {
   const params = useParams<{ id: string }>()
@@ -26,11 +27,16 @@ export default function ProfilePage() {
       <div className="min-h-screen px-[20px] py-[50px] bg-center w-full max-w-[450px] flex flex-col gap-[20px] items-center justify-center">
 
         <header className="flex w-full max-w-[360px] flex-col gap-[10px] items-center justify-center">
-          <img
-            src={data?.profile.avatar_url!}
-            alt="avatar"
-            className="w-full max-w-[60px] h-auto rounded-full"
-          />
+          <Avatar>
+            <AvatarImage
+              className="w-8 h-8 rounded-full"
+              src={data?.profile.avatar_url!}
+            />
+            <AvatarFallback className="bg-black dark:bg-neutral-300 text-white rounded-full dark:text-neutral-800 w-[34px] h-[34px] font-bold flex items-center justify-center text-xs">
+              {data?.profile?.full_name?.slice(0, 2).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+
           <h1 className="title-color font-bold">
             { upperFirst(data?.profile.full_name!) }
           </h1>
