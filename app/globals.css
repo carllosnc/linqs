@@ -74,7 +74,7 @@
   }
 
   .title-color {
-    @apply text-neutral-700 dark:text-neutral-100
+    @apply text-neutral-900 dark:text-neutral-100
   }
 
   .text-color {
