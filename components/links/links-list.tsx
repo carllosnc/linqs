@@ -19,7 +19,7 @@ export function LinksList({ links, userId, email }: props) {
 
   if (links.length === 0) {
     return (
-      <div className="px-[20px] w-full max-w-[590px] m-auto flex flex-col gap-[20px] justify-center items-center">
+      <div className="px-[20px] w-full max-w-[550px] m-auto flex flex-col gap-[20px] justify-center items-center">
         <LinksSheet userId={userId as string} />
 
         <div className="bg-red text-center h-[300px] w-full bg-white dark:bg-neutral-900 border border-color rounded-lg shadow-2xl shadow-neutral-200 dark:shadow-none flex flex-col items-center justify-center gap-[10px] p-[20px]">
