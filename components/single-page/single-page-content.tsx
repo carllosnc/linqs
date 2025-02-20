@@ -29,7 +29,7 @@ export default function SinglePageContent({id}: Props) {
     <main className="w-full page-bg min-h-screen flex flex-col">
       <DashboardHeader />
 
-      <section className="flex gap-[15px] flex-col p-4 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px]">
+      <section className="flex gap-[15px] lg:border-none flex-col p-4 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px]">
         <SinglePageToolbar page={data?.page!} pageId={id} />
         <SiglePageListLinks links={data?.links!} />
       </section>
