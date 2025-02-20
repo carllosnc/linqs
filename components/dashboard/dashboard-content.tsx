@@ -21,7 +21,7 @@ export default function DashboardContent() {
     <main className="w-full page-bg min-h-screen flex flex-col justify-between">
       <DashboardHeader />
 
-      <section className="p-4 min-h-[87vh] border-x m-auto border-color w-full max-w-[900px] flex flex-col gap-[15px]">
+      <section className="p-4 min-h-[87vh] border-x lg:border-none m-auto border-color w-full max-w-[900px] flex flex-col gap-[15px]">
         <DashboardNewPage pages={globalPages} userId={data?.user?.id!} />
         <DashboardListPages pages={globalPages} />
       </section>
