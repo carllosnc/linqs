@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 export function useGetSinglePage(id: string) {
   const supabase = createClient();
 
-    return useQuery({
+  return useQuery({
       gcTime: 0,
       queryKey: ["useGetSinglePage", id],
       queryFn: async () =>{
