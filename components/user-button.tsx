@@ -28,7 +28,7 @@ export function UserButton() {
         <Avatar>
           <AvatarImage
             className="w-8 h-8 rounded-full"
-            src={data?.session?.user.user_metadata.avatar_url}
+            src={data?.session?.user.user_metadata?.avatar_url}
           />
           <AvatarFallback className="bg-black dark:bg-neutral-300 text-white rounded-full dark:text-neutral-800 w-[34px] h-[34px] font-bold flex items-center justify-center text-xs">
               {data?.session?.user?.user_metadata?.full_name.slice(0, 2).toUpperCase()}
